@@ -1,6 +1,5 @@
 #include <SDL.h>
 #include <iostream>
-
 int main(int argc, char *argv[]) {
 	int width = 800;
 	int height = 600;
@@ -13,6 +12,6 @@ int main(int argc, char *argv[]) {
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 	SDL_Delay(3000);
-
+	std::cout << "Hi";
 	return 0;
 }
