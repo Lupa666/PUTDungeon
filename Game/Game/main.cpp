@@ -12,7 +12,6 @@ int main(int argc, char *argv[]) {
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 	SDL_Delay(3000);
-	std::cout << "Hi";
-	std::cout << "\nCo tam na grzale?";
+
 	return 0;
 }
