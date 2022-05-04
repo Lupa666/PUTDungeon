@@ -1,12 +1,12 @@
 #include "GameLoop.h"
 
-GameLoop::GameLoop() {
+SDL_Texture *backgroundTex, *playerTex;
+SDL_Rect srcR, dstR;
 
-}
 
-GameLoop::~GameLoop() {
+GameLoop::GameLoop() {}
 
-}
+GameLoop::~GameLoop() {}
 
 void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int height, bool fullscreen = false) {
 
@@ -35,6 +35,11 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 		isRunning = false;
 	}
 
+	SDL_Surface* temp_surface = IMG_Load("Assets/bckg.png");
+	backgroundTex = SDL_CreateTextureFromSurface(renderer, temp_surface);
+	temp_surface = IMG_Load("Assets/player.png");
+	playerTex = SDL_CreateTextureFromSurface(renderer, temp_surface);
+	SDL_FreeSurface(temp_surface);
 }
 
 void GameLoop::handleEvents() {
@@ -54,12 +59,17 @@ void GameLoop::handleEvents() {
 
 void GameLoop::update() {
 	count++;
+	dstR.h = 100;
+	dstR.w = 100;
+
 	std::cout << count << " ";
 }
 
 void GameLoop::render() {
 	SDL_RenderClear(renderer);
 	//add things to render
+	SDL_RenderCopy(renderer, backgroundTex, NULL, NULL);
+	SDL_RenderCopy(renderer, playerTex, NULL, &dstR);
 	SDL_RenderPresent(renderer);
 }
 
