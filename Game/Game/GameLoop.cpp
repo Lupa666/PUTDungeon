@@ -35,11 +35,8 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 		isRunning = false;
 	}
 
-	SDL_Surface* temp_surface = IMG_Load("Assets/bckg.png");
-	backgroundTex = SDL_CreateTextureFromSurface(renderer, temp_surface);
-	temp_surface = IMG_Load("Assets/player.png");
-	playerTex = SDL_CreateTextureFromSurface(renderer, temp_surface);
-	SDL_FreeSurface(temp_surface);
+	playerTex = TextureLoader::LoadText("Assets/player.png", renderer);
+	backgroundTex = TextureLoader::LoadText("Assets/bckg.png", renderer);
 }
 
 void GameLoop::handleEvents() {
@@ -59,9 +56,10 @@ void GameLoop::handleEvents() {
 
 void GameLoop::update() {
 	count++;
-	dstR.h = 100;
-	dstR.w = 100;
-
+	dstR.h = 64;
+	dstR.w = 64;
+	dstR.x = count; //player position x
+	dstR.y = count; //player position y
 	std::cout << count << " ";
 }
 
