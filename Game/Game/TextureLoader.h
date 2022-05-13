@@ -5,6 +5,6 @@
 class TextureLoader
 {
 public:
-	static SDL_Texture* LoadText(const char* filename, SDL_Renderer* ren);
+	static SDL_Texture* LoadText(const char* filename);
 };
 

@@ -1,8 +1,18 @@
+#pragma once
 #include "GameLoop.h"
+#include "TextureLoader.h"
+#include "GameObject.h"
+#include "Player.h"
+#include "Background.h"
 
 SDL_Texture *backgroundTex, *playerTex;
 SDL_Rect srcR, dstR;
 
+
+Player* player;
+Background* background;
+
+SDL_Renderer* GameLoop::renderer = nullptr;
 
 GameLoop::GameLoop() {}
 
@@ -35,8 +45,8 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 		isRunning = false;
 	}
 
-	playerTex = TextureLoader::LoadText("Assets/player.png", renderer);
-	backgroundTex = TextureLoader::LoadText("Assets/bckg.png", renderer);
+	background = new Background("assets/bckg.png", 0, 0,height,width);
+	player = new Player("assets/player.png", 0,0,32,32);
 }
 
 void GameLoop::handleEvents() {
@@ -54,20 +64,17 @@ void GameLoop::handleEvents() {
 	}
 }
 
-void GameLoop::update() {
-	count++;
-	dstR.h = 64;
-	dstR.w = 64;
-	dstR.x = count; //player position x
-	dstR.y = count; //player position y
-	std::cout << count << " ";
+void GameLoop::update() 
+{
+	background->Update();
+	player->Update();
 }
 
 void GameLoop::render() {
 	SDL_RenderClear(renderer);
 	//add things to render
-	SDL_RenderCopy(renderer, backgroundTex, NULL, NULL);
-	SDL_RenderCopy(renderer, playerTex, NULL, &dstR);
+	background->Render();
+	player->Render();
 	SDL_RenderPresent(renderer);
 }
 

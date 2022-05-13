@@ -13,8 +13,8 @@ int main(int argc, char *argv[]) {
 	Uint32 frameStart;
 	int frameTime;
 
-	int width = 800;
-	int height = 600;
+	const int width = 800;
+	const int height = 640;
 	bool fullscreen = false;
 	const char *title = "PutDungeon0.1v";
 

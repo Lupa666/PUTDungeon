@@ -10,10 +10,12 @@ private:
 	int count = 0;
 	bool isRunning = false;
 	SDL_Window *window = NULL;
-	SDL_Renderer *renderer = NULL;
+	
 public:
 	GameLoop();
 	~GameLoop();
+
+	static SDL_Renderer *renderer;
 
 	void gameInit(const char*, int, int, int, int, bool); //initializes game
 
