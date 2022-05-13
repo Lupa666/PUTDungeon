@@ -2,8 +2,7 @@
 
 
 void Player::Update() {
-	xpos++;
-	ypos++;
+
 	destRect.x = xpos;
 	destRect.y = ypos;
 	destRect.w = srcRect.w * 2;

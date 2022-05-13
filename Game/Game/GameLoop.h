@@ -16,6 +16,7 @@ public:
 	~GameLoop();
 
 	static SDL_Renderer *renderer;
+	static SDL_Event event;
 
 	void gameInit(const char*, int, int, int, int, bool); //initializes game
 

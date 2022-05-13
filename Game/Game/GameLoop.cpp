@@ -1,18 +1,16 @@
 #pragma once
+#include <iostream>
 #include "GameLoop.h"
 #include "TextureLoader.h"
 #include "GameObject.h"
 #include "Player.h"
 #include "Background.h"
 
-SDL_Texture *backgroundTex, *playerTex;
-SDL_Rect srcR, dstR;
-
-
 Player* player;
 Background* background;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
+SDL_Event GameLoop::event;
 
 GameLoop::GameLoop() {}
 
@@ -51,18 +49,37 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 
 void GameLoop::handleEvents() {
 
-	SDL_Event event;
-	SDL_PollEvent(&event);
+	SDL_PollEvent(&GameLoop::event);
 	switch (event.type) {
 	case SDL_QUIT: { //when pressing x on the window - quits the game
 		isRunning = false;
 		break;
 	}
+	case SDL_KEYUP: { //when key raises
+		switch (GameLoop::event.key.keysym.sym) {
+		case SDLK_DOWN: {
+			player->MoveDown();
+			break;
+		}
+		case SDLK_UP: {
+			player->MoveUp();
+			break;
+		}
+		case SDLK_LEFT: {
+			player->MoveLeft();
+			break;
+		}
+		case SDLK_RIGHT: {
+			player->MoveRight();
+			break;
+		}
+		}
+	}
 	default: {
 		break;
+		}
 	}
 	}
-}
 
 void GameLoop::update() 
 {
