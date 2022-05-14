@@ -4,6 +4,7 @@
 #include <string>
 #include "GameLoop.h"
 
+
 GameLoop *game = nullptr;
 
 int main(int argc, char *argv[]) {

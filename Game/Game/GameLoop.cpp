@@ -7,10 +7,12 @@
 #include "Background.h"
 
 Player* player;
-Background* background;
+Background *background;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
 SDL_Event GameLoop::event;
+
+GameState GameLoop::gameState = GameState::menu;
 
 GameLoop::GameLoop() {}
 
@@ -44,7 +46,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	}
 
 	background = new Background("assets/bckg.png", 0, 0,height,width);
-	player = new Player("assets/player.png", 0,0,32,32);
+	
 }
 
 void GameLoop::handleEvents() {
@@ -55,22 +57,39 @@ void GameLoop::handleEvents() {
 		isRunning = false;
 		break;
 	}
-	case SDL_KEYUP: { //when key raises
+	case SDL_KEYDOWN: { //when key raises          ONLY FOR TESTING
 		switch (GameLoop::event.key.keysym.sym) {
+		case SDLK_RETURN: {
+			gameState = GameState::play;
+			player = new Player("assets/player.png", 0, 0, 32, 32);
+			break;
+		}
 		case SDLK_DOWN: {
-			player->MoveDown();
+			if (gameState == GameState::play) {
+				std::cout << "Ruch!";
+				//player->MoveDown();
+			}
 			break;
 		}
 		case SDLK_UP: {
-			player->MoveUp();
+			if (gameState == GameState::play) {
+				std::cout << "Ruch!";
+				//player->MoveUp();
+			}
 			break;
 		}
 		case SDLK_LEFT: {
-			player->MoveLeft();
+			if (gameState == GameState::play) {
+				std::cout << "Ruch!";
+				//player->MoveDown();
+			}
 			break;
 		}
 		case SDLK_RIGHT: {
-			player->MoveRight();
+			if (gameState == GameState::play) {
+				std::cout << "Ruch!";
+				//player->MoveRight();
+			}
 			break;
 		}
 		}
@@ -84,14 +103,20 @@ void GameLoop::handleEvents() {
 void GameLoop::update() 
 {
 	background->Update();
-	player->Update();
+	if (gameState == GameState::play) {
+		player->Update();
+	}
 }
 
 void GameLoop::render() {
 	SDL_RenderClear(renderer);
-	//add things to render
 	background->Render();
-	player->Render();
+
+	//add things to render
+	if (gameState == GameState::play) {
+		player->Render();
+	}
+
 	SDL_RenderPresent(renderer);
 }
 

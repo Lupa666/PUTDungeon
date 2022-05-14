@@ -9,11 +9,6 @@ class Player :
 		GameObject(texturesheet, x, y, h, w) 
 	{}
 
-	void MoveLeft()		{xpos -= 32;}
-	void MoveRight()	{xpos += 32;}
-	void MoveUp()		{ypos -= 32;}
-	void MoveDown()		{ypos += 32;}
-
 	void Update();
 };
 
