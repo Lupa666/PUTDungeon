@@ -10,7 +10,7 @@
 #include "Player.h"
 #include "Selector.h"
 
-enum class MenuSelect{start, options, quit};
+enum class MenuSelect{start, authors, quit};
 enum class ClassSelect{warrior, mage, archer, thief};
 class Menu;
 class Selector;
@@ -26,9 +26,12 @@ public:
 	void Update();
 	void Render();
 
+	MenuSelect getMenuState() const { return menuState; }
 	int getX() { return xpos; }
 	int getY() { return ypos; }
 	int getSize() { return font_size; }
+	void MoveUp();
+	void MoveDown();
 
 protected:
 
@@ -39,7 +42,6 @@ protected:
 	int font_size = 20;
 
 	Text *title, *start, *options, *quit;
-public:
 	Selector *sel;
 };
 

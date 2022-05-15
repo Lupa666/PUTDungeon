@@ -56,9 +56,32 @@ void GameLoop::handleEvents() {
 		switch (event.type) {
 		case SDL_KEYDOWN: {
 			switch (GameLoop::event.key.keysym.sym) {
+			case SDLK_DOWN: {
+				startMenu->MoveDown();
+				break;
+			}
+			case SDLK_UP: {
+				startMenu->MoveUp();
+				break;
+			}
 			case SDLK_RETURN: {
-				player = new Player("assets/player.png", 0, 0, 32, 32);
-				gameState = GameState::play;
+				switch (startMenu->getMenuState()) {
+				case MenuSelect::start: {
+					delete startMenu;
+					player = new Player("assets/player.png", 0, 0, 32, 32);
+					gameState = GameState::play;
+					break;
+				}
+				case MenuSelect::authors: {
+				
+					break;
+				}
+				
+				case MenuSelect::quit: {
+					isRunning = false;
+					break;
+				}
+				}
 				break;
 			}
 			}
@@ -73,34 +96,31 @@ void GameLoop::handleEvents() {
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
 				if (gameState == GameState::play) {
-					std::cout << "Ruch!";
 					player->MoveDown();
 				}
 				break;
 			}
 			case SDLK_UP: {
 				if (gameState == GameState::play) {
-					std::cout << "Ruch!";
 					player->MoveUp();
 				}
 				break;
 			}
 			case SDLK_LEFT: {
 				if (gameState == GameState::play) {
-					std::cout << "Ruch!";
 					player->MoveLeft();
 				}
 				break;
 			}
 			case SDLK_RIGHT: {
 				if (gameState == GameState::play) {
-					std::cout << "Ruch!";
 					player->MoveRight();
 				}
 				break;
 			}
-			case SDLK_RETURN: {
+			case SDLK_ESCAPE: {
 				delete player;
+				startMenu = new Menu(24, "fonts/arcadeclassic.ttf", { 255, 255, 255, 255 }, 50, 200);
 				gameState = GameState::menu;
 				break;
 			}
