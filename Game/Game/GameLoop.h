@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 #include "TextureLoader.h"
 
@@ -22,7 +23,7 @@ public:
 	static SDL_Renderer *renderer;
 	static SDL_Event event;
 
-	void gameInit(const char*, int, int, int, int, bool); //initializes game
+	void gameInit(const char*, int, int, int, int); //initializes game
 
 	void handleEvents(); //handles events
 	void update(); //updates game objects

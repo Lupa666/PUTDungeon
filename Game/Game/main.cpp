@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 #include <string>
 #include "GameLoop.h"
@@ -8,7 +9,7 @@
 GameLoop *game = nullptr;
 
 int main(int argc, char *argv[]) {
-	const short int framerate = 60;
+	const short int framerate = 30;
 	const int framedelay = 1000 / framerate;
 
 	Uint32 frameStart;
@@ -21,7 +22,9 @@ int main(int argc, char *argv[]) {
 
 	game = new GameLoop();
 	
-	game->gameInit(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, fullscreen);
+	TTF_Init();
+
+	game->gameInit(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height);
 
 	while (game->running()) {
 		frameStart = SDL_GetTicks();

@@ -93,12 +93,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bartk\source\repos\Lupa666\PUTDungeon\\SDL2_ttf-2.0.12\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,14 +136,18 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
