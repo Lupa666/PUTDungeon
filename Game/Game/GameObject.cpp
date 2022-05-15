@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "TextureLoader.h"
+#include <iostream>
 
 GameObject::GameObject(const char* texturesheet, int x, int y, int h, int w):
 	xpos(x), ypos(y)
@@ -17,7 +18,6 @@ GameObject::~GameObject() {
 
 void GameObject::Update()
 {
-	
 }
 
 void GameObject::Render()

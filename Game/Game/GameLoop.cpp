@@ -126,7 +126,7 @@ void GameLoop::update()
 
 	switch (GameLoop::gameState) {
 	case GameState::menu : {
-		//startMenu->Update();
+		startMenu->Update();
 		break;
 	}
 	case GameState::play : {

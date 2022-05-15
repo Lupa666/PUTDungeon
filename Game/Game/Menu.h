@@ -7,9 +7,13 @@
 #include "Background.h"
 #include "GameObject.h"
 #include "Text.h"
+#include "Player.h"
+#include "Selector.h"
 
 enum class MenuSelect{start, options, quit};
 enum class ClassSelect{warrior, mage, archer, thief};
+class Menu;
+class Selector;
 
 class Menu
 {
@@ -17,11 +21,14 @@ public:
 	Menu(int fontsize, const char *font_path, const SDL_Color &color, int x, int y);
 	~Menu();
 
-	//void Update();
+	bool selectingClass = false;
+
+	void Update();
 	void Render();
 
 	int getX() { return xpos; }
 	int getY() { return ypos; }
+	int getSize() { return font_size; }
 
 protected:
 
@@ -32,6 +39,11 @@ protected:
 	int font_size = 20;
 
 	Text *title, *start, *options, *quit;
-	GameObject selector;
+public:
+	Selector *sel;
 };
+
+
+
+
 
