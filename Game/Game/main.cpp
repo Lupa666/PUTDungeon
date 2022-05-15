@@ -6,9 +6,11 @@
 #include "GameLoop.h"
 
 
-GameLoop *game = nullptr;
+
 
 int main(int argc, char *argv[]) {
+	GameLoop *game = nullptr;
+
 	const short int framerate = 30;
 	const int framedelay = 1000 / framerate;
 
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]) {
 	const int width = 800;
 	const int height = 640;
 	bool fullscreen = false;
-	const char *title = "PutDungeon0.1v";
+	const char *title = "PutDungeon v0.1";
 
 	game = new GameLoop();
 	

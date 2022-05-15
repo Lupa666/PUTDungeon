@@ -74,29 +74,34 @@ void GameLoop::handleEvents() {
 			case SDLK_DOWN: {
 				if (gameState == GameState::play) {
 					std::cout << "Ruch!";
-					//player->MoveDown();
+					player->MoveDown();
 				}
 				break;
 			}
 			case SDLK_UP: {
 				if (gameState == GameState::play) {
 					std::cout << "Ruch!";
-					//player->MoveUp();
+					player->MoveUp();
 				}
 				break;
 			}
 			case SDLK_LEFT: {
 				if (gameState == GameState::play) {
 					std::cout << "Ruch!";
-					//player->MoveDown();
+					player->MoveLeft();
 				}
 				break;
 			}
 			case SDLK_RIGHT: {
 				if (gameState == GameState::play) {
 					std::cout << "Ruch!";
-					//player->MoveRight();
+					player->MoveRight();
 				}
+				break;
+			}
+			case SDLK_RETURN: {
+				delete player;
+				gameState = GameState::menu;
 				break;
 			}
 			}
@@ -147,6 +152,7 @@ void GameLoop::update()
 
 void GameLoop::render() {
 	SDL_RenderClear(renderer);
+
 	background->Render();
 
 	//add things to render
@@ -157,15 +163,16 @@ void GameLoop::render() {
 	}
 	case GameState::play: {
 		player->Render();
+		break;
 	}
 	case GameState::combat: {
-
+		break;
 	}
 	case GameState::inventory: {
-
+		break;
 	}
 	case GameState::over: {
-
+		break;
 	}
 	}
 
@@ -175,6 +182,7 @@ void GameLoop::render() {
 void GameLoop::clean() {//cleans after closing the game
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 	std::cout << "Game cleaned\n";

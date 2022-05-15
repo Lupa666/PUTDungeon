@@ -10,7 +10,7 @@ Menu::Menu(int fontsize, const char *font_path, const SDL_Color &color, int x = 
 	start = new Text(font_path, fontsize, "START GAME", { 255, 255, 255, 255 });
 	options = new Text(font_path, fontsize, "OPTIONS", { 255, 255, 255, 255 });
 	quit = new Text(font_path, fontsize, "QUIT", { 255, 255, 255, 255 });
-	sel= new Selector("assets/selector.png", xpos, 50 + ypos + (1 * font_size),fontsize, fontsize);
+	sel= new Selector("assets/selector.png", 0, 0, 10, 10);
 }
 
 Menu::~Menu() {
