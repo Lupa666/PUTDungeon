@@ -7,10 +7,12 @@
 #include "Player.h"
 #include "Background.h"
 #include "Menu.h"
+#include "TileMap.h"
 
 Player* player;
 Background *background;
 Menu* startMenu;
+TileMap* currentMap;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
 SDL_Event GameLoop::event;
@@ -68,6 +70,8 @@ void GameLoop::handleEvents() {
 				switch (startMenu->getMenuState()) {
 				case MenuSelect::start: {
 					delete startMenu;
+					currentMap = new TileMap(32, 32);
+					currentMap->LoadMap("maps/map1.txt");
 					player = new Player("assets/player.png", 0, 0, 32, 32);
 					gameState = GameState::play;
 					break;
@@ -182,6 +186,7 @@ void GameLoop::render() {
 		break;
 	}
 	case GameState::play: {
+		currentMap->Render();
 		player->Render();
 		break;
 	}
