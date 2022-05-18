@@ -1,7 +1,7 @@
 #include "TileMap.h"
 #include <fstream>
 
-TileMap::TileMap(int x=0, int y=32)
+TileMap::TileMap(int x, int y)
 {
 	tiles[0] = new Tile("assets/wall.png", 32, 32);
 	tiles[1] = new Tile("assets/ground.png", 32, 32);
@@ -31,6 +31,21 @@ void TileMap::Render()
 		}
 	}
 
+bool TileMap::checkWallCollision(int x, int y)
+{
+	return MapArea[x][y];
+}
+
+int TileMap::getTilePosX(int x)
+{	
+	return xStart + x * size;
+}
+
+int TileMap::getTilePosY(int y)
+{
+	return yStart + y * size;
+}
+
 void TileMap::LoadMap(const char* filepath = "maps/map1.txt")
 {
 	std::ifstream mapFile;
@@ -45,6 +60,10 @@ void TileMap::LoadMap(const char* filepath = "maps/map1.txt")
 	}
 	mapFile.close();
 }
+
+int TileMap::xStart = 0;
+int TileMap::yStart = 64;
+int TileMap::size = 32;
 
 Tile::Tile(const char* texturesheet, int h, int w)
 {

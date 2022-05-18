@@ -29,15 +29,22 @@ private:
 	int MapArea[20][12];
 	Tile *tiles[3];
 
-	int xStart = 0, yStart = 32;
-	int size = 32;
+	static int xStart, yStart;
+	static int size;
 
 public:
-	TileMap(int, int);
+	TileMap(int x=16, int y=32);
 	~TileMap();
+
+	bool checkWallCollision(int, int);
+	static int getTilePosX(int);
+	static int getTilePosY(int);
 
 	void LoadMap(const char*);
 	void Update();
 	void Render();
+
+	int getStartX() { return xStart; }
+	int getStartY() { return yStart; }
 };
 

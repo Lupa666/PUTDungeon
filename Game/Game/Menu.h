@@ -27,14 +27,23 @@ public:
 	void Render();
 
 	MenuSelect getMenuState() const { return menuState; }
+	ClassSelect getClassState() const { return classState; }
 	int getX() { return xpos; }
 	int getY() { return ypos; }
 	int getSize() { return font_size; }
+	bool getStartSelect() { return startSelect; }
+	bool getAuthorDisplay() { return authorsDisplay; }
 	void MoveUp();
 	void MoveDown();
+	void ResetState();
+	void PressStart() { startSelect = !startSelect; }
+	void PressAuthors() { authorsDisplay = !authorsDisplay; }
+
 
 protected:
 
+	bool startSelect = false;
+	bool authorsDisplay = false;
 	MenuSelect menuState = MenuSelect::start;
 	ClassSelect classState = ClassSelect::warrior;
 	int xpos = 200;
@@ -42,6 +51,8 @@ protected:
 	int font_size = 20;
 
 	Text *title, *start, *options, *quit;
+	Text *warrior, *mage, *archer, *thief;
+	Text *authors;
 	Selector *sel;
 };
 

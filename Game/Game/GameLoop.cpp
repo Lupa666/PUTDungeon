@@ -8,11 +8,14 @@
 #include "Background.h"
 #include "Menu.h"
 #include "TileMap.h"
+#include "Enemy.h"
+#include <cstdlib>
 
 Player* player;
 Background *background;
 Menu* startMenu;
 TileMap* currentMap;
+std::vector<Enemy> enemies;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
 SDL_Event GameLoop::event;
@@ -54,6 +57,7 @@ void GameLoop::handleEvents() {
 	SDL_PollEvent(&GameLoop::event);
 
 	switch (GameLoop::gameState) {
+
 	case GameState::menu: {
 		switch (event.type) {
 		case SDL_KEYDOWN: {
@@ -66,18 +70,49 @@ void GameLoop::handleEvents() {
 				startMenu->MoveUp();
 				break;
 			}
+			case SDLK_LEFT: {
+				if (startMenu->getStartSelect() or startMenu->getAuthorDisplay()) {
+					startMenu->ResetState();
+				}
+				break;
+			}
 			case SDLK_RETURN: {
 				switch (startMenu->getMenuState()) {
 				case MenuSelect::start: {
-					delete startMenu;
-					currentMap = new TileMap(32, 32);
-					currentMap->LoadMap("maps/map1.txt");
-					player = new Player("assets/player.png", 0, 0, 32, 32);
-					gameState = GameState::play;
+					if (startMenu->getStartSelect()) {
+						currentMap = new TileMap(12, 32);
+						currentMap->LoadMap("maps/map1.txt");
+						enemies.push_back(Enemy("assets/enemy.png", 4, 6));
+						enemies.push_back(Enemy("assets/enemy.png", 1, 10));
+						enemies.push_back(Enemy("assets/enemy.png", 10, 7));
+						gameState = GameState::play;
+						switch (startMenu->getClassState()) {
+						case ClassSelect::warrior : {
+							player = new Player("assets/player.png", 0, 0, 32, 32);
+							break;
+						}
+						case ClassSelect::mage: {
+							player = new Player("assets/player.png", 0, 0, 32, 32);
+							break;
+						}
+						case ClassSelect::archer: {
+							player = new Player("assets/player.png", 0, 0, 32, 32);
+							break;
+						}
+						case ClassSelect::thief: {
+							player = new Player("assets/player.png", 0, 0, 32, 32);
+							break;
+						}
+						}
+						delete startMenu;
+					}
+					else {
+						startMenu->PressStart();
+					}
 					break;
 				}
 				case MenuSelect::authors: {
-				
+					startMenu -> PressAuthors();
 					break;
 				}
 				
@@ -94,31 +129,34 @@ void GameLoop::handleEvents() {
 		}
 		break;
 	}
+
+
 	case GameState::play: {
+		//player input
 		switch (event.type) {
 		case SDL_KEYDOWN: { //when key is pressed or held
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
 				if (gameState == GameState::play) {
-					player->MoveDown();
+					player->MoveDown(currentMap->checkWallCollision(player->tileX, player->tileY + 1));
 				}
 				break;
 			}
 			case SDLK_UP: {
 				if (gameState == GameState::play) {
-					player->MoveUp();
+					player->MoveUp(currentMap->checkWallCollision(player->tileX, player->tileY - 1));
 				}
 				break;
 			}
 			case SDLK_LEFT: {
 				if (gameState == GameState::play) {
-					player->MoveLeft();
+					player->MoveLeft(currentMap->checkWallCollision(player->tileX - 1, player->tileY));
 				}
 				break;
 			}
 			case SDLK_RIGHT: {
 				if (gameState == GameState::play) {
-					player->MoveRight();
+					player->MoveRight(currentMap->checkWallCollision(player->tileX + 1, player->tileY));
 				}
 				break;
 			}
@@ -159,6 +197,10 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::play : {
+		for (auto & enem : enemies)
+		{
+			enem.Update();
+		}
 		player->Update();
 		break;
 	}
@@ -188,6 +230,10 @@ void GameLoop::render() {
 	case GameState::play: {
 		currentMap->Render();
 		player->Render();
+		for (auto & enem : enemies)
+		{
+			enem.Render();
+		}
 		break;
 	}
 	case GameState::combat: {

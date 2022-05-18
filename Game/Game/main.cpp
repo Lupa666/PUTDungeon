@@ -3,8 +3,8 @@
 #include <SDL_ttf.h>
 #include <iostream>
 #include "GameLoop.h"
-
-
+#include <cstdlib>
+#include <ctime>
 
 
 int main(int argc, char *argv[]) {
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 	game = new GameLoop();
 	
 	TTF_Init();
+	srand(time(NULL));
 
 	game->gameInit(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height);
 

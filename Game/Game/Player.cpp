@@ -3,21 +3,29 @@
 
 void Player::Update() {
 
-	destRect.x = xpos;
-	destRect.y = ypos;
+	destRect.x = TileMap::getTilePosX(tileX);
+	destRect.y = TileMap::getTilePosY(tileY);
 	destRect.w = srcRect.w;
 	destRect.h = srcRect.h;
 }
 
-void Player::MoveUp() {
-	ypos -= 32;
+void Player::MoveUp(bool tileCheck) {
+	if (tileCheck) {
+		tileY--;
+	}
 }
-void Player::MoveDown() {
-	ypos += 32;
+void Player::MoveDown(bool tileCheck) {
+	if (tileCheck) {
+		tileY++;
+	}
 }
-void Player::MoveLeft() {
-	xpos -= 32;
+void Player::MoveLeft(bool tileCheck) {
+	if (tileCheck) {
+		tileX--;
+	}
 }
-void Player::MoveRight() {
-	xpos += 32;
+void Player::MoveRight(bool tileCheck) {
+	if (tileCheck) {
+		tileX++;
+	}
 }
