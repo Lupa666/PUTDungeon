@@ -12,7 +12,7 @@ TileMap::TileMap(int x, int y)
 
 TileMap::~TileMap()
 {
-	delete tiles[0], tiles[1], tiles[2];
+	delete tiles[0], tiles[1], tiles[2], tiles[3];
 }
 
 void TileMap::Update()
@@ -56,9 +56,37 @@ void TileMap::LoadMap(const char* filepath = "maps/map1.txt")
 	for (int i = 0; i < 12; i++) {
 		for (int j = 0; j < 20; j++) {
 			mapFile >> MapArea[j][i];
+			if (MapArea[j][i] == 2) {
+				xEnd = j;
+				yEnd = i;
+			}
 		}
 	}
+	mapFile >> startPosX;
+	mapFile >> startPosY;
 	mapFile.close();
+}
+
+void TileMap::GetNewEnemyPos(int & x, int & y)
+{
+	bool check = false;
+	while (!check) {
+		int steps = rand() % (12 * 19);
+		for (int i = 1; i < 12; i++) {
+			for (int j = 1; j < 20; j++) {
+				if (MapArea[j][i] == 1) {
+					steps--;
+				}
+				if (steps == 0) {
+					x = j;
+					y = i;
+					check = true;
+					return;
+				}
+			}
+		}
+	}
+	return;
 }
 
 int TileMap::xStart = 0;
@@ -67,7 +95,6 @@ int TileMap::size = 32;
 
 Tile::Tile(const char* texturesheet, int h, int w)
 {
-	
 	srcRect.h = h;
 	srcRect.w = w;
 	srcRect.x = 0;

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki źródłowe\PlayerClasses">
+      <UniqueIdentifier>{05c9b9d6-2f99-49eb-9252-09a65c5b31cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\PlayerClasses">
+      <UniqueIdentifier>{cf723127-9da6-4f5f-a7b2-bb40159f4158}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +54,18 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Pliki źródłowe\PlayerClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Mage.cpp">
+      <Filter>Pliki źródłowe\PlayerClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Archer.cpp">
+      <Filter>Pliki źródłowe\PlayerClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Thief.cpp">
+      <Filter>Pliki źródłowe\PlayerClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -79,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>Pliki nagłówkowe\PlayerClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Mage.h">
+      <Filter>Pliki nagłówkowe\PlayerClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Archer.h">
+      <Filter>Pliki nagłówkowe\PlayerClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Thief.h">
+      <Filter>Pliki nagłówkowe\PlayerClasses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,3 +29,9 @@ void Player::MoveRight(bool tileCheck) {
 		tileX++;
 	}
 }
+
+void Player::SetPos(int x, int y)
+{
+	tileX = x;
+	tileY = y;
+}

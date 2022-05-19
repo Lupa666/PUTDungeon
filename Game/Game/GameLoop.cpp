@@ -1,14 +1,14 @@
 #pragma once
+#include "GameLoop.h"
 #include <iostream>
 #include "Text.h"
-#include "GameLoop.h"
 #include "TextureLoader.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Background.h"
 #include "Menu.h"
 #include "TileMap.h"
-#include "Enemy.h"
 #include <cstdlib>
 
 Player* player;
@@ -80,27 +80,22 @@ void GameLoop::handleEvents() {
 				switch (startMenu->getMenuState()) {
 				case MenuSelect::start: {
 					if (startMenu->getStartSelect()) {
-						currentMap = new TileMap(12, 32);
-						currentMap->LoadMap("maps/map1.txt");
-						enemies.push_back(Enemy("assets/enemy.png", 4, 6));
-						enemies.push_back(Enemy("assets/enemy.png", 1, 10));
-						enemies.push_back(Enemy("assets/enemy.png", 10, 7));
-						gameState = GameState::play;
+						generateFloor();
 						switch (startMenu->getClassState()) {
 						case ClassSelect::warrior : {
-							player = new Player("assets/player.png", 0, 0, 32, 32);
+							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::mage: {
-							player = new Player("assets/player.png", 0, 0, 32, 32);
+							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::archer: {
-							player = new Player("assets/player.png", 0, 0, 32, 32);
+							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::thief: {
-							player = new Player("assets/player.png", 0, 0, 32, 32);
+							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						}
@@ -162,6 +157,7 @@ void GameLoop::handleEvents() {
 			}
 			case SDLK_ESCAPE: {
 				delete player;
+				floorLevel = 0;
 				startMenu = new Menu(24, "fonts/arcadeclassic.ttf", { 255, 255, 255, 255 }, 50, 200);
 				gameState = GameState::menu;
 				break;
@@ -199,7 +195,19 @@ void GameLoop::update()
 	case GameState::play : {
 		for (auto & enem : enemies)
 		{
+			if (
+				(enem.tileX - 1 <= player->tileX and enem.tileX + 1 >= player->tileX)
+				and
+				(enem.tileY - 1 <= player->tileY and enem.tileY + 1 >= player->tileY)
+				) {
+				std::cout << "PREPARE TO FIGHT!\n";
+			}
+
 			enem.Update();
+		}
+		if (player->tileX == currentMap->xEnd and player->tileY == currentMap->yEnd) {
+			generateFloor();
+			player->SetPos(currentMap->startPosX, currentMap->startPosY);
 		}
 		player->Update();
 		break;
@@ -248,6 +256,23 @@ void GameLoop::render() {
 	}
 
 	SDL_RenderPresent(renderer);
+}
+
+void GameLoop::generateFloor()
+{
+	floorLevel++;
+	currentMap = new TileMap(12, 32);
+	int mapTemp = rand() % 5+1;
+	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
+	currentMap->LoadMap(mapPath.c_str());
+	int size = rand() % 3 + 5;
+	enemies.clear();
+	for (int i = 0; i < size; i++) {
+		int x, y;
+		currentMap->GetNewEnemyPos(x, y);
+		enemies.push_back(Enemy("assets/enemy.png", x, y));
+	}
+	gameState = GameState::play;
 }
 
 void GameLoop::clean() {//cleans after closing the game

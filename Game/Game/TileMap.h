@@ -26,13 +26,18 @@ public:
 class TileMap
 {
 private:
+	int sizeX = 20, sizeY = 12;
 	int MapArea[20][12];
-	Tile *tiles[3];
+	Tile *tiles[4];
 
 	static int xStart, yStart;
 	static int size;
 
 public:
+	int startPosX, startPosY;
+	int xEnd, yEnd;
+
+
 	TileMap(int x=16, int y=32);
 	~TileMap();
 
@@ -41,9 +46,11 @@ public:
 	static int getTilePosY(int);
 
 	void LoadMap(const char*);
+	void GetNewEnemyPos(int &x, int &y);
 	void Update();
 	void Render();
 
+	int PlayerXStart, PlayerYStart;
 	int getStartX() { return xStart; }
 	int getStartY() { return yStart; }
 };

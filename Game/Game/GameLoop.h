@@ -10,8 +10,7 @@ enum class GameState { menu, play, inventory, combat, over };
 class GameLoop
 {
 private:
-	int count = 0;
-	
+	int floorLevel = 0;
 	bool isRunning = false;
 	SDL_Window *window = NULL;
 	
@@ -24,10 +23,10 @@ public:
 	static SDL_Event event;
 
 	void gameInit(const char*, int, int, int, int); //initializes game
-
 	void handleEvents(); //handles events
 	void update(); //updates game objects
 	void render(); //renders a screen
+	void generateFloor();
 	void clean(); //cleans screen
 
 	const bool running() { return isRunning; }; //checks if game is running
