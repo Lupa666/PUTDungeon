@@ -69,6 +69,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe\Main</Filter>
     </ClCompile>
+    <ClCompile Include="CombatManager.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Thief.h">
       <Filter>Pliki nagłówkowe\PlayerClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatManager.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

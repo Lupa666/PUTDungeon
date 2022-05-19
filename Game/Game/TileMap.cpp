@@ -75,7 +75,16 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 		for (int i = 1; i < 12; i++) {
 			for (int j = 1; j < 20; j++) {
 				if (MapArea[j][i] == 1) {
-					steps--;
+					if (
+						(j > startPosX-2) and (j < startPosX + 2)
+						and
+						(i > startPosY - 2) and (i < startPosY + 2)
+						) {
+						steps++;
+					}
+					else {
+						steps--;
+					}
 				}
 				if (steps == 0) {
 					x = j;
