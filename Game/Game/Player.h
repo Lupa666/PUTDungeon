@@ -19,5 +19,6 @@ public:
 	void MoveRight(bool tileCheck = true);
 	void SetPos(int x, int y);
 	void Update();
+	virtual void Attack() {};
 };
 

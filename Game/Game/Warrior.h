@@ -3,7 +3,10 @@
 class Warrior :
 	public Player
 {
-	Warrior();
+public:
+	Warrior(int xPos, int yPos) :
+		Player("assets/player.png", 32, 0, 32, 32, xPos, yPos)
+	{}
 
 };
 

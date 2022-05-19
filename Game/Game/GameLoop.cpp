@@ -4,7 +4,13 @@
 #include "Text.h"
 #include "TextureLoader.h"
 #include "GameObject.h"
+
 #include "Player.h"
+#include "Warrior.h"
+#include "Archer.h"
+#include "Mage.h"
+#include "Thief.h"
+
 #include "Enemy.h"
 #include "Background.h"
 #include "Menu.h"
@@ -83,19 +89,19 @@ void GameLoop::handleEvents() {
 						generateFloor();
 						switch (startMenu->getClassState()) {
 						case ClassSelect::warrior : {
-							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
+							player = new Warrior(currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::mage: {
-							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
+							player = new Mage(currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::archer: {
-							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
+							player = new Archer(currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						case ClassSelect::thief: {
-							player = new Player("assets/player.png", 0, 0, 32, 32, currentMap->startPosX, currentMap->startPosY);
+							player = new Thief(currentMap->startPosX, currentMap->startPosY);
 							break;
 						}
 						}

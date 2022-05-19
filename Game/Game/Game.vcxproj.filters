@@ -19,11 +19,11 @@
     <Filter Include="Pliki nagłówkowe\PlayerClasses">
       <UniqueIdentifier>{cf723127-9da6-4f5f-a7b2-bb40159f4158}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Main">
+      <UniqueIdentifier>{e8c7660f-d6d3-456f-aa38-88f383b85304}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="GameLoop.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
@@ -65,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="Thief.cpp">
       <Filter>Pliki źródłowe\PlayerClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Pliki źródłowe\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

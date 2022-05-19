@@ -6,7 +6,7 @@
 Menu::Menu(int fontsize, const char *font_path, const SDL_Color &color, int x = 100, int y = 50) :
 	xpos(x), ypos(y), font_size(fontsize)
 {
-	title = new Text(font_path, fontsize+12, "PUT DUNGEON V 01 BARELY WORKING EDITION", color);
+	title = new Text(font_path, fontsize+12, "PUT DUNGEON V 02 MORE WORKING EDITION", color);
 	start = new Text(font_path, fontsize, "START GAME", { 255, 255, 255, 255 });
 	options = new Text(font_path, fontsize, "AUTHORS", { 255, 255, 255, 255 });
 	quit = new Text(font_path, fontsize, "QUIT", { 255, 255, 255, 255 });
