@@ -1,0 +1,3 @@
+dmg +10
+dmgrange +10
+health +20

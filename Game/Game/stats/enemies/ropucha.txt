@@ -1,0 +1,4 @@
+dmg 5
+health 4
+stamina 100
+vomit 1.65*dmg stamina 50

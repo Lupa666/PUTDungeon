@@ -10,7 +10,7 @@ enum class GameState { menu, play, inventory, combat, over };
 class GameLoop
 {
 private:
-	int floorLevel = 0;
+	
 	bool isRunning = false;
 	SDL_Window *window = NULL;
 	
@@ -18,6 +18,7 @@ public:
 	GameLoop();
 	~GameLoop();
 
+	static int floorLevel;
 	static GameState gameState;
 	static SDL_Renderer *renderer;
 	static SDL_Event event;

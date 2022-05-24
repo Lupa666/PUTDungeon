@@ -1,0 +1,2 @@
+armour +10
+health +40

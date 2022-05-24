@@ -17,15 +17,19 @@
 #include "TileMap.h"
 #include <cstdlib>
 
+#include "InventoryManagement.h"
+
 Player* player;
 Background *background;
 Menu* startMenu;
 TileMap* currentMap;
+InventoryManagement* inventory;
 std::vector<Enemy> enemies;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
 SDL_Event GameLoop::event;
 
+int GameLoop::floorLevel = 0;
 GameState GameLoop::gameState = GameState::menu;
 
 GameLoop::GameLoop() {}

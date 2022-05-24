@@ -1,0 +1,5 @@
+dmg 10
+health 200
+stamina 100
+feathera 1.65*dmg stamina 20
+tears health +20*health
