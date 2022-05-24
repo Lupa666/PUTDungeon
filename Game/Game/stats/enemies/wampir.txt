@@ -1,4 +1,5 @@
 dmg 7
 health 50
 stamina 0
-regenhr 0.05*dmg
+type 0
+special 1.3

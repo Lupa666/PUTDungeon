@@ -5,7 +5,7 @@ class Archer :
 {
 public:
 	Archer(int xPos, int yPos) :
-		Player("assets/player.png", 0, 32, 32, 32, xPos, yPos)
+		Player("assets/player.png", 0, 32, 32, 32, xPos, yPos, "stats/characters/archer.txt")
 	{}
 };
 

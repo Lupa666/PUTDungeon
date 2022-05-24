@@ -1,9 +1,12 @@
 health 140
 stamina 120
 dmg 30
-ciety 1.5*dmg stamina 25
-zywiolowy 3.5*dmg stamina 30
+ciety 1.5 
+cietycost 25
+elem 3.5 
+elemcost 30
 amunition 5
-dmgrange 25 stamina 30
+dmgrange 25 
+rangecost 30
 regenf 120
 regenr 0

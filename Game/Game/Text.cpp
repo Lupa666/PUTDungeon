@@ -7,9 +7,14 @@ Text::Text(const char* font_path, int font_size, const char* msg_text, const SDL
 	SDL_QueryTexture(text_texture, nullptr, nullptr, &rectangle.w, &rectangle.h);
 }
 
+Text::~Text() {
+	SDL_DestroyTexture(text_texture);
+}
+
 void Text::Render(int x, int y){
 	rectangle.x = x;
 	rectangle.y = y;
+
 	SDL_RenderCopy(GameLoop::renderer, text_texture, nullptr, &rectangle);
 }
 

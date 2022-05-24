@@ -1,2 +1,0 @@
-armour +3
-health +10

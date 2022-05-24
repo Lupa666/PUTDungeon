@@ -1,4 +1,5 @@
 dmg 15
 health 40
 stamina 100
-head 1.65*dmg stamina 50
+type 0
+special 1.65 50

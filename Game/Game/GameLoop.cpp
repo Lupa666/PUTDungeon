@@ -2,6 +2,7 @@
 #include "GameLoop.h"
 #include <iostream>
 #include "Text.h"
+#include "DynamicText.h"
 #include "TextureLoader.h"
 #include "GameObject.h"
 
@@ -24,6 +25,8 @@ Background *background;
 Menu* startMenu;
 TileMap* currentMap;
 InventoryManagement* inventory;
+GameObject* overScreen;
+DynamicText* dungeonLevel;
 std::vector<Enemy> enemies;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
@@ -60,6 +63,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 
 	background = new Background("assets/bckg.png", 0, 0,height,width);
 	startMenu = new Menu(24, "fonts/arcadeclassic.ttf", {255, 255, 255, 255}, 50, 200);
+	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 }
 
 void GameLoop::handleEvents() {
@@ -203,6 +207,14 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::play : {
+		player->CurrentHealth--;
+		if (player->CurrentHealth < 1) {
+			overScreen = new GameObject("Assets/over.png", 0, 0, 640, 800);
+			overScreen->SetDest(0,0,640,800);
+			gameState = GameState::over;
+			overScreen->Update();
+			break;
+		}
 		for (auto & enem : enemies)
 		{
 			if (
@@ -229,6 +241,7 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::over: {
+		overScreen->Update();
 		break;
 	}
 	}
@@ -248,6 +261,7 @@ void GameLoop::render() {
 	case GameState::play: {
 		currentMap->Render();
 		player->Render();
+		dungeonLevel->Render(30, 8);
 		for (auto & enem : enemies)
 		{
 			enem.Render();
@@ -261,6 +275,7 @@ void GameLoop::render() {
 		break;
 	}
 	case GameState::over: {
+		overScreen->Render();
 		break;
 	}
 	}
@@ -282,6 +297,7 @@ void GameLoop::generateFloor()
 		currentMap->GetNewEnemyPos(x, y);
 		enemies.push_back(Enemy("assets/enemy.png", x, y));
 	}
+	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
 }
 

@@ -135,6 +135,7 @@
     <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="CombatManager.cpp" />
+    <ClCompile Include="DynamicText.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Archer.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="CombatManager.h" />
+    <ClInclude Include="DynamicText.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />

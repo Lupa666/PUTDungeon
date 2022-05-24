@@ -12,8 +12,12 @@ public:
 	std::map<std::string, int> ItemStats;
 	int rarity;
 
+	int xPos, yPos;
+
 	Item(const char*);
 	~Item();
+	void Render();
+	void Update();
 };
 
 class InventoryManagement

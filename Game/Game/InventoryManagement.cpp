@@ -30,3 +30,11 @@ Item::Item(const char* texturePath):
 Item::~Item()
 {
 }
+
+void Item::Render()
+{
+}
+
+void Item::Update()
+{
+}

@@ -9,8 +9,8 @@ Enemy::Enemy(const char* texture = "assets/enemy.png", int xpos = 4, int ypos = 
 {
 	tileX = xpos;
 	tileY = ypos;
-	srcRect.x = 32*(rand() % 2);
-	srcRect.y = 32*(rand() % 2);
+	srcRect.x = 0;
+	srcRect.y = 0;
 }
 
 Enemy::~Enemy()

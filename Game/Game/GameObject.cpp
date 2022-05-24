@@ -21,7 +21,17 @@ void GameObject::Update()
 	
 }
 
+
+
 void GameObject::Render()
 {
 	SDL_RenderCopy(GameLoop::renderer, objTexture, &srcRect, &destRect);
+}
+
+void GameObject::SetDest(int x, int y, int h, int w)
+{
+	destRect.x = x;
+	destRect.y = y;
+	destRect.h = h;
+	destRect.w = w;
 }

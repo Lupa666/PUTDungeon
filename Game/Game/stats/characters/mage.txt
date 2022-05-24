@@ -2,5 +2,7 @@ health 125
 stamina 150
 amunition 100000
 dmg 10
-zywiolowy 3.5*dmgrange stamina 70
-regenf 20 regenr 10
+elem 3.5 
+elemcost 70
+regenf 20 
+regenr 10

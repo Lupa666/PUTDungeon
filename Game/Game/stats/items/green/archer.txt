@@ -1,0 +1,2 @@
+dmg +2
+dmgrange +6

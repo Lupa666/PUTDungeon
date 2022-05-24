@@ -12,9 +12,10 @@ public:
 
 	int getX() {return xpos;}
 	int getY() {return ypos;}
+	void SetDest(int x, int y, int h, int w);
 
 	protected :
-
+		
 	int xpos;
 	int ypos;
 	SDL_Texture* objTexture;

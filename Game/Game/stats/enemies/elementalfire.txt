@@ -1,4 +1,5 @@
 dmg 12
 health 120
 stamina 100
-spitf 1.85*dmg stamina 50
+type 3
+special 1.85 50

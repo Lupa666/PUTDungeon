@@ -1,4 +1,5 @@
 dmg 7
 stamina 100
 health 70
-tha 1.65*dmg stamina 100
+type 0
+special 1.65 100

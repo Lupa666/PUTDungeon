@@ -1,4 +1,5 @@
 dmg 8
 health 120
 stamina 100
-fistoe 1.35*dmg stamina 20
+type 4
+special 1.35 20

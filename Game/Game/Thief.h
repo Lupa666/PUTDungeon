@@ -5,7 +5,7 @@ class Thief :
 {
 public:
 	Thief(int xPos, int yPos) :
-		Player("assets/player.png", 32, 32, 32, 32, xPos, yPos) 
+		Player("assets/player.png", 32, 32, 32, 32, xPos, yPos, "stats/characters/rogue.txt")
 	{}
 };
 

@@ -1,4 +1,5 @@
 dmg 8
 health 120
 stamina 100
-fistof 1.65*dmg stamina 20
+type 3
+special 1.65 20

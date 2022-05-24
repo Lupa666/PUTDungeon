@@ -5,7 +5,7 @@ class Mage :
 {
 public:
 	Mage(int xPos, int yPos) :
-		Player("assets/player.png", 0, 0, 32, 32, xPos, yPos)
+		Player("assets/player.png", 0, 0, 32, 32, xPos, yPos, "stats/characters/mage.txt")
 	{}
 };
 
