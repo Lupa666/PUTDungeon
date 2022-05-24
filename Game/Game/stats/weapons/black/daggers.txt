@@ -1,0 +1,2 @@
+dmg +70
+dmgrange +70

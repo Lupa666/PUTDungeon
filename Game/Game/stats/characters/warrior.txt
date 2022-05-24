@@ -1,0 +1,10 @@
+health 200
+stamina 50
+amunition 3
+armour 1
+dmg 25
+ciety 1.5*dmg stamina 25
+obuchowy 2.5*dmg stamina 30
+zywiolowy 3.5*dmg stamina 25
+dmgrange 15 stamina 15
+regenf 10 regenr 3

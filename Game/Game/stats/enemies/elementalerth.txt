@@ -1,0 +1,4 @@
+dmg 12
+health 75
+stamina 100
+spite 1.45*dmg stamina 33

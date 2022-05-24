@@ -1,0 +1,9 @@
+health 120
+stamina 150
+amunition 20
+dmg 15
+zywiolowy 3.5*dmgrange stamina 70
+dmgrange 35 stamina 50
+regenf 20
+regenr 10
+

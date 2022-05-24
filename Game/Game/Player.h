@@ -1,9 +1,14 @@
 #pragma once
 #include "GameObject.h"
+#include <map>
+#include <string>
 #include "TileMap.h"
 class Player : public GameObject
 {
 public:
+	
+	std::map<std::string, int> PlayerStats;
+	int CurrentHealth;
 
 	int tileX;
 	int tileY;

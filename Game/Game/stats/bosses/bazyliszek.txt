@@ -1,0 +1,5 @@
+dmg 40
+health 300
+stamina 100
+headsmack 1.35*dmg stamina 40
+hammertime 1.75*dmg stamina 60

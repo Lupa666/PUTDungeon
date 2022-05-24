@@ -1,0 +1,4 @@
+dmg 7
+stamina 100
+health 70
+tha 1.65*dmg stamina 100

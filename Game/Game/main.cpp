@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	const int width = 800;
 	const int height = 640;
 	bool fullscreen = false;
-	const char *title = "PutDungeon v0.2";
+	const char *title = "PuutDungeon v0.2";
 
 	game = new GameLoop();
 	

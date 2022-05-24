@@ -1,0 +1,2 @@
+dmg +25
+dmgrange +10
