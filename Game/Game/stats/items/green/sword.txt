@@ -1,2 +1,5 @@
+name GreenSword
+item 0
+type 0
 dmg +3
 dmgrange +2

@@ -2,4 +2,5 @@ dmg 7
 stamina 100
 health 70
 type 0
-special 1.65 100
+special 1.65 
+specialcost 100

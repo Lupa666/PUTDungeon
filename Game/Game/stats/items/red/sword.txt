@@ -1,2 +1,5 @@
+name RedSword
+item 0
+type 0
 dmg +12
 dmgrange +6

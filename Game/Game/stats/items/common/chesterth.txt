@@ -1,3 +1,6 @@
+name ChestEarth
+item 12
+type 4
 dmg +11
 dmgrange +11
 health +20

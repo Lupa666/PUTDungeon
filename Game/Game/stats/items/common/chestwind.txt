@@ -1,3 +1,6 @@
+name ChestWind
+item 12
+type 2
 dmg +8
 dmgrange +8
 health +20

@@ -1,2 +1,5 @@
+name RedShield
+item 1
+type 0
 armour +10
 health +40

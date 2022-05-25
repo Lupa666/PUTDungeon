@@ -1,5 +1,7 @@
 dmg 30
 health 270
 stamina 100
-tails 1.35*dmg stamina 30
-eyelaser 2.25*dmg stamina 70
+special1 1.35 
+special1cost 30
+special2 2.25 
+special2cost 70

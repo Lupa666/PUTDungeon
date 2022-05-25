@@ -1,3 +1,6 @@
+name RingEarth
+item 13
+type 4
 dmg +5
 dmgrange +5
 health +20

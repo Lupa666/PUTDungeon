@@ -1,2 +1,5 @@
+name BlueSword
+item 0
+type 0
 dmg +6
 dmgrange +4

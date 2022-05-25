@@ -1,2 +1,5 @@
+name RedBow
+item 3
+type 0
 dmg +6
 dmgrange +30

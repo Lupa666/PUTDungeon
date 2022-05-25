@@ -1,3 +1,6 @@
+name BootsEarth
+item 11
+type 4
 dmg +8
 dmgrange +8
 health +20

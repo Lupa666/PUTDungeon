@@ -1,3 +1,6 @@
+name RingWind
+item 13
+type 2
 dmg +6
 dmgrange +6
 health +20

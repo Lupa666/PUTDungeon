@@ -1,2 +1,5 @@
+name RedStaff
+item 2
+type 0
 dmg +6
 dmgrange +28

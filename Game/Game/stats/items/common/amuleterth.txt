@@ -1,3 +1,6 @@
+name AmuletEarth
+item 10
+type 4
 dmg +8
 dmgrange +8
 health +20

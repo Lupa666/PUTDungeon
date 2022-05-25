@@ -1,3 +1,6 @@
+name BootsFire
+item 11
+type 3
 dmg +7
 dmgrange +7
 health +20

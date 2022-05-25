@@ -1,3 +1,6 @@
+name AmuletFire
+item 10
+type 3
 dmg +7
 dmgrange +7
 health +20

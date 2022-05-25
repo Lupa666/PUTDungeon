@@ -1,2 +1,5 @@
+name BlueStaff
+item 2
+type 0
 dmg +4
 dmgrange +13

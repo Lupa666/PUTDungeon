@@ -1,2 +1,5 @@
+name BlackStaff
+item 2
+type 0
 dmg +10
 dmgrange +60

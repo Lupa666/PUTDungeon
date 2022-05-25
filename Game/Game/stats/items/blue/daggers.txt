@@ -1,2 +1,5 @@
+name BlueDaggers
+item 4
+type 0
 dmg +8
 dmgrange +8
