@@ -1,1 +1,3 @@
+name Staff
+type 0
 atk +2

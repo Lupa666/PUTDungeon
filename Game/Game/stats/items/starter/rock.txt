@@ -1,1 +1,3 @@
+name Rock
+type 0
 dmgrange +2

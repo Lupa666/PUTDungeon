@@ -1,3 +1,6 @@
+name BootsWater
+item 11
+type 1
 dmg +6
 dmgrange +6
-health +2-
+health +2

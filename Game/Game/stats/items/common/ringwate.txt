@@ -1,3 +1,6 @@
+name RingWater
+item 13
+type 1
 dmg +7
 dmgrange +7
 health +20

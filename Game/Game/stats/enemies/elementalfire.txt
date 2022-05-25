@@ -2,4 +2,5 @@ dmg 12
 health 120
 stamina 100
 type 3
-special 1.85 50
+special 1.85
+specialcost 50

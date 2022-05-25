@@ -1,2 +1,5 @@
+name BlackDaggers
+item 4
+type 0
 dmg +70
 dmgrange +70

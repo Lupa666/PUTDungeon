@@ -1,5 +1,7 @@
 dmg 20
 health 250
 stamina 100
-fireb 1.35*dmg stamina 25
-firep 2.15*dmg stamina 50
+special1 1.35
+special1cost 25
+special2 2.15
+special2cost 50

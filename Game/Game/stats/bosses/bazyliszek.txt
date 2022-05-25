@@ -1,5 +1,7 @@
 dmg 40
 health 300
 stamina 100
-headsmack 1.35*dmg stamina 40
-hammertime 1.75*dmg stamina 60
+special1 1.35 
+special1cost 40
+special2 1.75 
+special2cost 60

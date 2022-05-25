@@ -1,2 +1,5 @@
+name BlackSword
+item 0
+type 0
 dmg +25
 dmgrange +10

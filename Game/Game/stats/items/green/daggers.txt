@@ -1,2 +1,5 @@
+name GreenDaggers
+item 4
+type 0
 dmg +4
 dmgrange +4

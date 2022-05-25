@@ -1,3 +1,6 @@
+name RingFire
+item 13
+type 3
 dmg +8
 dmgrange +8
 health +20

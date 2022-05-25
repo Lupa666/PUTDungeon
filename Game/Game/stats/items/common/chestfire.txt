@@ -1,3 +1,6 @@
+name ChestFire
+item 12
+type 3
 dmg +10
 dmgrange +10
 health +20

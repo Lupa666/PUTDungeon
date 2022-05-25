@@ -1,3 +1,6 @@
+name ChestWater
+item 12
+type 1
 dmg +9
 dmgrange +9
 health +20

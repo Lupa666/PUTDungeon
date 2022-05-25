@@ -1,2 +1,5 @@
+name GreenShield
+item 1
+type 0
 armour +3
 health +10

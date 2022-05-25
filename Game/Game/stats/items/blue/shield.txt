@@ -1,2 +1,5 @@
+name BlueShield
+item 1
+type 0
 armour +5
 health +20

@@ -1,2 +1,5 @@
+name BlackShield
+item 1
+type 0
 armour +15
 health +90

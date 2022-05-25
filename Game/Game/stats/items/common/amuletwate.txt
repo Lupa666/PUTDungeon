@@ -1,3 +1,6 @@
+name AmuletWater
+item 10
+type 1
 dmg +10
 dmgrange +10
 health +20

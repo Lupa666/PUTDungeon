@@ -1,2 +1,5 @@
+name BlueBow
+item 3
+type 0
 dmg +4
 dmgrange +13

@@ -1,2 +1,5 @@
+name GreenStaff
+item 2
+type 0
 dmg +2
 dmgrange +6
