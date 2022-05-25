@@ -1,2 +1,5 @@
+name RainbowSword
+item 0
+type 0
 dmg +55
 dmgrange +20

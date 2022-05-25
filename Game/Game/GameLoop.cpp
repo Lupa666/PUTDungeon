@@ -17,6 +17,7 @@
 #include "Menu.h"
 #include "TileMap.h"
 #include <cstdlib>
+#include <algorithm>
 
 #include "InventoryManagement.h"
 
@@ -27,6 +28,8 @@ TileMap* currentMap;
 InventoryManagement* inventory;
 GameObject* overScreen;
 DynamicText* dungeonLevel;
+
+std::vector<Item> items;
 std::vector<Enemy> enemies;
 
 SDL_Renderer* GameLoop::renderer = nullptr;
@@ -113,6 +116,7 @@ void GameLoop::handleEvents() {
 							break;
 						}
 						}
+						inventory = new InventoryManagement(player);
 						delete startMenu;
 					}
 					else {
@@ -139,33 +143,41 @@ void GameLoop::handleEvents() {
 		break;
 	}
 
-
 	case GameState::play: {
 		//player input
 		switch (event.type) {
 		case SDL_KEYDOWN: { //when key is pressed or held
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
-				if (gameState == GameState::play) {
-					player->MoveDown(currentMap->checkWallCollision(player->tileX, player->tileY + 1));
-				}
+				player->MoveDown(currentMap->checkWallCollision(player->tileX, player->tileY + 1));
 				break;
 			}
 			case SDLK_UP: {
-				if (gameState == GameState::play) {
-					player->MoveUp(currentMap->checkWallCollision(player->tileX, player->tileY - 1));
-				}
+				player->MoveUp(currentMap->checkWallCollision(player->tileX, player->tileY - 1));
 				break;
 			}
 			case SDLK_LEFT: {
-				if (gameState == GameState::play) {
-					player->MoveLeft(currentMap->checkWallCollision(player->tileX - 1, player->tileY));
-				}
+				player->MoveLeft(currentMap->checkWallCollision(player->tileX - 1, player->tileY));
 				break;
 			}
 			case SDLK_RIGHT: {
-				if (gameState == GameState::play) {
-					player->MoveRight(currentMap->checkWallCollision(player->tileX + 1, player->tileY));
+				player->MoveRight(currentMap->checkWallCollision(player->tileX + 1, player->tileY));
+				break;
+			}
+			case SDLK_i: {
+				std::cout << "Opening inventory\n";
+				gameState = GameState::inventory;
+				break;
+			}
+			case SDLK_RETURN:{
+				for (int i = 0; i < items.size(); i++)
+				{
+					if ((player->tileX == items[i].xPos) and (player->tileY == items[i].yPos)) {
+						if (inventory->PickupItem(items[i])) {
+							items.erase(items.begin() + i);
+						}
+						break;
+					}
 				}
 				break;
 			}
@@ -180,12 +192,39 @@ void GameLoop::handleEvents() {
 			break;
 		}
 		}
+		break;
 	}
 	case GameState::combat: {
-
+		break;
 	}
 	case GameState::inventory: {
-
+		switch (event.type) {
+		case SDL_KEYDOWN: { //when key is pressed or held
+			switch (GameLoop::event.key.keysym.sym) {
+			case SDLK_DOWN: {
+				break;
+			}
+			case SDLK_UP: {
+				break;
+			}
+			case SDLK_LEFT: {
+				break;
+			}
+			case SDLK_RIGHT: {
+				break;
+			}
+			case SDLK_i: {
+				GameLoop::gameState = GameState::play;
+				break;
+			}
+			case SDLK_ESCAPE: {
+				GameLoop::gameState = GameState::play;
+				break;
+			}
+			}
+			break;
+		}
+		}
 	}
 	case GameState::over: {
 
@@ -207,13 +246,16 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::play : {
-		player->CurrentHealth--;
 		if (player->CurrentHealth < 1) {
 			overScreen = new GameObject("Assets/over.png", 0, 0, 640, 800);
 			overScreen->SetDest(0,0,640,800);
 			gameState = GameState::over;
 			overScreen->Update();
 			break;
+		}
+		for (auto & it : items)
+		{
+			it.Update();
 		}
 		for (auto & enem : enemies)
 		{
@@ -266,12 +308,26 @@ void GameLoop::render() {
 		{
 			enem.Render();
 		}
+		for (auto & it : items)
+		{
+			if ((player->tileX == it.xPos) and (player->tileY == it.yPos)) {
+				it.RenderText(450, 420);
+				break;
+			}
+		}
+		for (auto & it : items)
+		{
+			if (it.onGround) {
+				it.Render();
+			}
+		}
 		break;
 	}
 	case GameState::combat: {
 		break;
 	}
 	case GameState::inventory: {
+		inventory->Render(30, 50);
 		break;
 	}
 	case GameState::over: {
@@ -279,7 +335,6 @@ void GameLoop::render() {
 		break;
 	}
 	}
-
 	SDL_RenderPresent(renderer);
 }
 
@@ -292,11 +347,21 @@ void GameLoop::generateFloor()
 	currentMap->LoadMap(mapPath.c_str());
 	int size = rand() % 3 + 5;
 	enemies.clear();
+
 	for (int i = 0; i < size; i++) {
 		int x, y;
 		currentMap->GetNewEnemyPos(x, y);
 		enemies.push_back(Enemy("assets/enemy.png", x, y));
 	}
+
+	items.clear();
+
+	for (int i = 0; i < 6; i++) {
+		int x, y;
+		currentMap->GetNewEnemyPos(x, y);
+		items.push_back(Item(x, y));
+	}
+
 	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
 }

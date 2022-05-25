@@ -1,5 +1,0 @@
-name BlackBow
-item bow
-type 0
-dmg +50
-dmgrange +165

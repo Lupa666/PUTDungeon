@@ -1,2 +1,5 @@
+name RainbowStaff
+item 2
+type 0
 dmg +25
 dmgrange +170

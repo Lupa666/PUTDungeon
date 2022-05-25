@@ -1,2 +1,5 @@
+name RainbowDagger
+item 4
+type 0
 dmg +157
 dmgrange +157

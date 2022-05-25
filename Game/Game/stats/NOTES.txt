@@ -1,0 +1,5 @@
+item types
+// 0 - sword, 1 - shield, 2 - staff, 3 - bow, 4 - daggers
+
+elemental types
+//0 - normal type, 1 - water type, 2 - wind type, 3 -fire type, 4 - earth type

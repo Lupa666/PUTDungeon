@@ -12,10 +12,12 @@ public:
 
 	void loadFont(const char* msg_text, const SDL_Color &color);
 
+	SDL_Texture* text_texture = nullptr;
+
 private:
 
 	TTF_Font *font = nullptr;
-	SDL_Texture* text_texture = nullptr;
+	
 	SDL_Rect rectangle;
 
 };

@@ -1,0 +1,5 @@
+name RainbowBow
+item 3
+type 0
+dmg +50
+dmgrange +165

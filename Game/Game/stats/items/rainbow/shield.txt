@@ -1,2 +1,5 @@
+name RainbowShield
+item 1
+type 0
 armour +25
 health +145
