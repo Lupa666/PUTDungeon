@@ -264,7 +264,7 @@ void GameLoop::update()
 				and
 				(enem.tileY - 1 <= player->tileY and enem.tileY + 1 >= player->tileY)
 				) {
-				std::cout << "PREPARE TO FIGHT!\n";
+				//gameState = GameState::combat;
 			}
 
 			enem.Update();
