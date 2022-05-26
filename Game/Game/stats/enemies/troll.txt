@@ -1,3 +1,4 @@
+name Troll
 dmg 10
 health 100
 stamina 0

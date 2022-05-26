@@ -1,3 +1,4 @@
+name WaterElement
 dmg 12
 health 75
 stamina 100

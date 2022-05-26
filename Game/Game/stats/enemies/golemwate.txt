@@ -1,3 +1,4 @@
+name WaterGolem
 dmg 8
 health 120
 stamina 100

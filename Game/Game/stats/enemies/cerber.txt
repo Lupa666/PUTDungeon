@@ -1,3 +1,4 @@
+name Cerber
 dmg 7
 stamina 100
 health 70

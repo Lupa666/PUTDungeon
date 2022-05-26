@@ -1,8 +1,9 @@
+name Archer
 health 120
 stamina 150
 amunition 20
 dmg 15
-elem 3.5 
+elem 4
 elemcost 70
 dmgrange 35 
 rangecost 50

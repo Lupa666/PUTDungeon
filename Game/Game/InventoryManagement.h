@@ -5,40 +5,33 @@
 #include <fstream>
 #include "Player.h"
 #include "DynamicText.h"
+#include "Selector.h"
 #include "TileMap.h"
-
-class Item: public GameObject{
-
-public:
-	std::string itemName;
-	std::map<std::string, int> ItemStats;
-	std::vector<DynamicText*> ItemText;
-	DynamicText* name = nullptr;
-	bool onGround;
-	int xPos, yPos;
-
-	Item(int x, int y); //rolls for random item
-	~Item();
-	void Render();
-	void Update();
-	void GenerateText();
-	void RenderText(int xp, int yp);
-};
 
 class InventoryManagement
 {
 private:
 	Player *toManage;
 	std::vector<Item> InventoryItems;
+	Selector sel;
+	int itemChoose = 0;
 	DynamicText *Inv = new DynamicText("fonts/arcadeclassic.ttf", 32, "INVENTORY", { 255, 255, 255, 255 });
-	int MaxSize = 4, CurrentSize = 0;
+	short int MaxSize = 4, CurrentSize = 0;
 public:
 	InventoryManagement(Player*);
 	~InventoryManagement();
 
 	bool PickupItem(Item& toPickup);
 	void DropItem();
+	void Equip();
 
+	void ResetItemChoose() { itemChoose = 0; }
+	void MoveUp();
+	void MoveDown();
+	int GetInventorySize() { return CurrentSize; }
+	Item GetCurrentItem();
+	void ChangeCurrentItem(Item);
+	void Update(int, int);
 	void Render(int, int);
 };
 

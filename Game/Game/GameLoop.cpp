@@ -202,19 +202,36 @@ void GameLoop::handleEvents() {
 		case SDL_KEYDOWN: { //when key is pressed or held
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
+				inventory->MoveDown();
 				break;
 			}
 			case SDLK_UP: {
+				inventory->MoveUp();
 				break;
 			}
 			case SDLK_LEFT: {
+				inventory->DropItem();
 				break;
 			}
 			case SDLK_RIGHT: {
+				if (inventory->GetInventorySize()) {
+					Item temp = inventory->GetCurrentItem();
+					if (player->Equip(temp)) {
+						inventory->DropItem();
+					}
+					else {
+						inventory->ChangeCurrentItem(temp);
+					}
+				}
 				break;
 			}
 			case SDLK_i: {
+				inventory->ResetItemChoose();
 				GameLoop::gameState = GameState::play;
+				break;
+			}
+			case SDLK_o: {
+				player->CurrentHealth -= 7;
 				break;
 			}
 			case SDLK_ESCAPE: {
@@ -280,6 +297,8 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::inventory: {
+		inventory->Update(30, 130);
+		player->UpdateStatsText();
 		break;
 	}
 	case GameState::over: {
@@ -302,7 +321,6 @@ void GameLoop::render() {
 	}
 	case GameState::play: {
 		currentMap->Render();
-		player->Render();
 		dungeonLevel->Render(30, 8);
 		for (auto & enem : enemies)
 		{
@@ -321,13 +339,16 @@ void GameLoop::render() {
 				it.Render();
 			}
 		}
+		player->Render();
 		break;
 	}
 	case GameState::combat: {
 		break;
 	}
 	case GameState::inventory: {
-		inventory->Render(30, 50);
+		inventory->Render(50, 50);
+		player->RenderInventory(250, 50);
+		player->RenderStats(400, 50);
 		break;
 	}
 	case GameState::over: {

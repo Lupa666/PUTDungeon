@@ -1,3 +1,4 @@
+name bat
 dmg 5
 health 30
 stamina 100

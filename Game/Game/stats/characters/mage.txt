@@ -1,3 +1,4 @@
+name Mage
 health 125
 stamina 150
 amunition 100000

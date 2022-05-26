@@ -1,3 +1,4 @@
+name Minotaur
 dmg 15
 health 40
 stamina 100

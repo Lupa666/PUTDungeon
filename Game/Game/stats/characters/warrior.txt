@@ -1,13 +1,14 @@
+name Warrior
 health 200
 stamina 50
 amunition 3
 armour 1
 dmg 25
-ciety 1.5 
+ciety 2
 cietycost 25
-obuchowy 2.5 
+obuchowy 3
 obuchowycost 30
-elem 3.5 
+elem 4 
 elemcost 25
 dmgrange 15 
 rangecost 15

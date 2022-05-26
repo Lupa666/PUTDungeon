@@ -1,3 +1,4 @@
+name Frog
 dmg 5
 health 4
 stamina 100

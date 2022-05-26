@@ -1,3 +1,4 @@
+FireElement
 dmg 12
 health 120
 stamina 100

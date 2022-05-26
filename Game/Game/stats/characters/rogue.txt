@@ -1,9 +1,10 @@
+name Rogue
 health 140
 stamina 120
 dmg 30
-ciety 1.5 
+ciety 2
 cietycost 25
-elem 3.5 
+elem 4 
 elemcost 30
 amunition 5
 dmgrange 25 
