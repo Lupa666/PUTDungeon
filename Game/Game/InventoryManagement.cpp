@@ -57,7 +57,7 @@ Item InventoryManagement::GetCurrentItem()
 	return InventoryItems[itemChoose];
 }
 
-void InventoryManagement::ChangeCurrentItem(Item toChange)
+void InventoryManagement::ChangeCurrentItem(Item &toChange)
 {
 	InventoryItems[itemChoose] = toChange;
 }

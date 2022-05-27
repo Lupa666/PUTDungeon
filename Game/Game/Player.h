@@ -14,12 +14,13 @@ class Item : public GameObject {
 public:
 	std::string itemName;
 	std::map<std::string, int> ItemStats;
-	std::vector<DynamicText*> ItemText;
+	std::vector<std::shared_ptr<DynamicText>> ItemText;
 	DynamicText* name = nullptr;
 	bool onGround;
 	int xPos, yPos;
 
-	Item(int x, int y); //rolls for random item
+	Item(SDL_Texture *&, int, int); //rolls for random item
+	Item(int, int); //rolls for random item
 	~Item();
 	void Render();
 	void Update();
@@ -34,7 +35,7 @@ public:
 	
 	std::map<std::string, float> PlayerStats;
 	std::map<int, Item> EquippedItems;
-	std::vector<DynamicText*> StatsText;
+	std::vector<std::shared_ptr<DynamicText>> StatsText;
 	std::string playerName;
 	int CurrentHealth;
 	int CurrentStamina;

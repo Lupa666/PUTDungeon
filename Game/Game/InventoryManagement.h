@@ -30,7 +30,7 @@ public:
 	void MoveDown();
 	int GetInventorySize() { return CurrentSize; }
 	Item GetCurrentItem();
-	void ChangeCurrentItem(Item);
+	void ChangeCurrentItem(Item&);
 	void Update(int, int);
 	void Render(int, int);
 };

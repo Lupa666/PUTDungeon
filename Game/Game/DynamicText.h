@@ -16,8 +16,9 @@ public:
 
 private:
 
-	TTF_Font *font = nullptr;
-	
+	TTF_Font * font;
+	std::string font_p;
+	int font_s;
 	SDL_Rect rectangle;
 
 };

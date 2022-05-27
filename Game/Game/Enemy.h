@@ -16,6 +16,7 @@ public:
 	int counter = 0;
 
 	Enemy(const char*, int, int);
+	Enemy(SDL_Texture *&, int, int);
 	~Enemy();
 	void LoadTexture(const char*);
 	void Update();

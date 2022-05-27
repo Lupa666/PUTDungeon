@@ -28,6 +28,8 @@ TileMap* currentMap;
 InventoryManagement* inventory;
 GameObject* overScreen;
 DynamicText* dungeonLevel;
+SDL_Texture * enemyTexture;
+SDL_Texture * itemTexture;
 
 std::vector<Item> items;
 std::vector<Enemy> enemies;
@@ -67,6 +69,8 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	background = new Background("assets/bckg.png", 0, 0,height,width);
 	startMenu = new Menu(24, "fonts/arcadeclassic.ttf", {255, 255, 255, 255}, 50, 200);
 	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
+	enemyTexture = TextureLoader::LoadText("assets/enemy.png");
+	itemTexture = TextureLoader::LoadText("assets/item.png");
 }
 
 void GameLoop::handleEvents() {
@@ -362,17 +366,19 @@ void GameLoop::render() {
 void GameLoop::generateFloor()
 {
 	floorLevel++;
+	delete currentMap;
 	currentMap = new TileMap(12, 32);
 	int mapTemp = rand() % 5+1;
 	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
 	currentMap->LoadMap(mapPath.c_str());
 	int size = rand() % 3 + 5;
+
 	enemies.clear();
 
 	for (int i = 0; i < size; i++) {
 		int x, y;
 		currentMap->GetNewEnemyPos(x, y);
-		enemies.push_back(Enemy("assets/enemy.png", x, y));
+		enemies.push_back(Enemy(enemyTexture, x, y));
 	}
 
 	items.clear();
@@ -380,7 +386,7 @@ void GameLoop::generateFloor()
 	for (int i = 0; i < 6; i++) {
 		int x, y;
 		currentMap->GetNewEnemyPos(x, y);
-		items.push_back(Item(x, y));
+		items.push_back(Item(itemTexture, x, y));
 	}
 
 	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
@@ -388,6 +394,9 @@ void GameLoop::generateFloor()
 }
 
 void GameLoop::clean() {//cleans after closing the game
+	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel;
+	SDL_DestroyTexture(enemyTexture);
+	SDL_DestroyTexture(itemTexture);
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	TTF_Quit();

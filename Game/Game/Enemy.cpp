@@ -13,8 +13,18 @@ Enemy::Enemy(const char* texture = "assets/enemy.png", int xpos = 4, int ypos = 
 	srcRect.y = 0;
 }
 
+Enemy::Enemy(SDL_Texture *& text, int xpos = 4, int ypos = 4) :
+	GameObject(text, 0, 0, 32, 32)
+{
+	tileX = xpos;
+	tileY = ypos;
+	srcRect.x = 0;
+	srcRect.y = 0;
+}
+
 Enemy::~Enemy()
-{}
+{
+}
 
 void Enemy::LoadTexture(const char * filepath = "assets/enemy.png")
 {

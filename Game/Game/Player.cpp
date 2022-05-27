@@ -40,7 +40,7 @@ bool Player::Equip(Item &item)
 	double previousHP = CurrentHealth / PlayerStats["health"];
 	if (EquippedItems.find(item.ItemStats["item"]) == EquippedItems.end()) {
 		//no item present
-		for (auto it : item.ItemStats) {
+		for (auto &it : item.ItemStats) {
 			if (it.first == "type") {
 				ElementalType[it.second]++;
 			}
@@ -54,7 +54,7 @@ bool Player::Equip(Item &item)
 	}
 	else {
 		//item present
-		for (auto it : EquippedItems[item.ItemStats["item"]].ItemStats) {
+		for (auto &it : EquippedItems[item.ItemStats["item"]].ItemStats) {
 			if (it.first == "type") {
 				ElementalType[it.second]--;
 			}
@@ -65,7 +65,7 @@ bool Player::Equip(Item &item)
 				PlayerStats[it.first] -= it.second;
 			}
 		}
-		for (auto it : item.ItemStats) {
+		for (auto &it : item.ItemStats) {
 			if (it.first == "type") {
 				ElementalType[it.second]++;
 			}
@@ -105,7 +105,7 @@ void Player::MakeStatsText()
 {
 	StatsText.clear();
 	for (auto ps : PlayerStats) {
-		StatsText.push_back(new DynamicText("fonts/arcadeclassic.ttf", 20, (ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 }));
+		StatsText.push_back(std::shared_ptr<DynamicText>(new DynamicText("fonts/arcadeclassic.ttf", 20, (ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 })));
 	}
 }
 
@@ -154,7 +154,7 @@ void Player::RenderInventory(int xp, int yp)
 	int spacing = 80;
 	int n = 1;
 	EQ->Render(xp, yp);
-	for (auto it : EquippedItems) {
+	for (auto &it : EquippedItems) {
 		it.second.RenderText(xp, yp+(spacing*n));
 		n++;
 	}
@@ -165,7 +165,7 @@ void Player::RenderStats(int xp, int yp)
 	int spacing = 20;
 	int n = 1;
 	NAME->Render(xp, yp);
-	for (auto st : StatsText) {
+	for (auto &st : StatsText) {
 		st->Render(xp, yp + 20 + (spacing*n));
 		n++;
 	}
@@ -180,6 +180,113 @@ void Player::Attack()
 //ITEMS//
 //
 //////////////////////////
+
+Item::Item(SDL_Texture *& text, int x = 1, int y = 1):
+	GameObject(text, 0, 0, 32, 32)
+{
+	xPos = x;
+	yPos = y;
+	int ItemRarity = rand() % (100 + (GameLoop::floorLevel + GameLoop::floorLevel * 7));
+	std::ifstream fileStats;
+	std::string filePath = "stats/items/";
+	if (ItemRarity < 70) { //common
+		filePath += "common/";
+		int tempRand = rand() % 4;
+		switch (tempRand) {
+		case 0: {
+			filePath += "amulet";
+			break;
+		}
+		case 1: {
+			filePath += "boots";
+			break;
+		}
+		case 2: {
+			filePath += "chest";
+			break;
+		}
+		case 3: {
+			filePath += "ring";
+			break;
+		}
+		}
+		tempRand = rand() % 4;
+		switch (tempRand) {
+		case 0: {
+			filePath += "erth";
+			break;
+		}
+		case 1: {
+			filePath += "fire";
+			break;
+		}
+		case 2: {
+			filePath += "wate";
+			break;
+		}
+		case 3: {
+			filePath += "wind";
+			break;
+		}
+		}
+	}
+	else {
+		if (ItemRarity < 80) { //green
+			filePath += "green/";
+		}
+		else if (ItemRarity < 90) { //blue
+			filePath += "blue/";
+		}
+		else if (ItemRarity < 100) { //red
+			filePath += "red/";
+		}
+		else if (ItemRarity < 110) { //black
+			filePath += "black/";
+		}
+		else { //rainbow
+			filePath += "rainbow/";
+		}
+		switch (Player::playerClass) {
+		case 0: {
+			bool sworsh = rand() % 2;
+			if (sworsh) {
+				filePath += "sword";
+			}
+			else {
+				filePath += "shield";
+			}
+			break;
+		}
+		case 1: {
+			filePath += "staff";
+			break;
+		}
+		case 2: {
+			filePath += "bow";
+			break;
+		}
+		case 3: {
+			filePath += "daggers";
+			break;
+		}
+		}
+
+	}
+	filePath += ".txt";
+	fileStats.open(filePath);
+
+	float tempStats;
+	std::string tempKey;
+	fileStats >> tempKey >> itemName;
+	name = new DynamicText("fonts/arcadeclassic.ttf", 20, (itemName).c_str(), { 255, 255, 255, 255 });
+	while (!fileStats.eof()) {
+		fileStats >> tempKey;
+		fileStats >> tempStats;
+		ItemStats.try_emplace(tempKey, tempStats);
+	}
+	fileStats.close();
+	GenerateText();
+}
 
 Item::Item(int x = 1, int y = 1) :
 	GameObject("assets/item.png", 0, 0, 32, 32)
@@ -301,14 +408,14 @@ void Item::Render()
 
 void Item::GenerateText()
 {
-	for (auto x : ItemStats)
+	for (auto &x : ItemStats)
 	{
 		if (x.first == "type" or x.first == "item") {
 
 		}
 		else {
 			std::string temp = x.first + " " + std::to_string(x.second);
-			ItemText.push_back(new DynamicText("fonts/arcadeclassic.ttf", 20, temp.c_str(), { 255, 255, 255, 255 }));
+			ItemText.push_back(std::shared_ptr<DynamicText> (new DynamicText("fonts/arcadeclassic.ttf", 20, temp.c_str(), { 255, 255, 255, 255 })));
 		}
 	}
 }
@@ -319,7 +426,7 @@ void Item::RenderText(int xp, int yp)
 	int spacing = 16, n = 0;
 	name->Render(xp, yp + (spacing*n));
 	n++;
-	for (auto x : ItemText)
+	for (auto &x : ItemText)
 	{
 		x->Render(xp, yp + (spacing*n));
 		n++;

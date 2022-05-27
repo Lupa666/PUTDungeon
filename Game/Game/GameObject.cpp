@@ -12,15 +12,23 @@ GameObject::GameObject(const char* texturesheet, int x, int y, int h, int w):
 	objTexture = TextureLoader::LoadText(texturesheet);
 }
 
-GameObject::~GameObject() {
+GameObject::GameObject(SDL_Texture *& text, int x, int y, int h, int w):
+	xpos(x), ypos(y)
+{
+	srcRect.h = h;
+	srcRect.w = w;
+	srcRect.x = x;
+	srcRect.y = y;
+	objTexture = text;
+}
 
+GameObject::~GameObject() {
 }
 
 void GameObject::Update()
 {
 	
 }
-
 
 
 void GameObject::Render()
