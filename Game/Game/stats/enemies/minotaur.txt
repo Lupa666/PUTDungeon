@@ -1,3 +1,4 @@
+64 0
 name Minotaur
 dmg 15
 health 40

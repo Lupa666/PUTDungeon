@@ -65,13 +65,25 @@ void TileMap::LoadMap(const char* filepath = "maps/map1.txt")
 	mapFile >> startPosX;
 	mapFile >> startPosY;
 	mapFile.close();
+	startingSteps.clear();
 }
 
 void TileMap::GetNewEnemyPos(int & x, int & y)
 {
 	bool check = false;
 	while (!check) {
-		int steps = rand() % (12 * 19);
+		int steps = rand() % (19*9);
+		bool occupiedCheck = false;
+		while (!occupiedCheck) {
+			occupiedCheck = true;
+			for (int i : startingSteps) {
+				std::cout << "Steps " << i << "\n";
+				if (i == steps) { 
+					steps += rand() % 5;
+					occupiedCheck = false; }
+			}
+		}
+		startingSteps.push_back(steps);
 		for (int i = 1; i < 12; i++) {
 			for (int j = 1; j < 20; j++) {
 				if (MapArea[j][i] == 1) {
@@ -94,7 +106,7 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 				}
 			}
 		}
-	}
+	} 
 	return;
 }
 

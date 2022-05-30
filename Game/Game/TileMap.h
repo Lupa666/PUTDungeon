@@ -26,6 +26,7 @@ public:
 class TileMap
 {
 private:
+	std::vector<int> startingSteps;
 	int sizeX = 20, sizeY = 12;
 	int MapArea[20][12];
 	Tile *tiles[4];

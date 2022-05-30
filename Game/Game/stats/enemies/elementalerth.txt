@@ -1,3 +1,4 @@
+32 96
 name EarthElement
 dmg 12
 health 75

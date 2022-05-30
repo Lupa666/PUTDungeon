@@ -1,3 +1,4 @@
+0 0
 name WaterGolem
 dmg 8
 health 120

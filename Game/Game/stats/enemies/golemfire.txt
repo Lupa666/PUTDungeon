@@ -1,3 +1,4 @@
+0 32
 name FireGolem
 dmg 8
 health 120

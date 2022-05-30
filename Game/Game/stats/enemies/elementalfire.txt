@@ -1,4 +1,5 @@
-FireElement
+0 96
+name FireElemental
 dmg 12
 health 120
 stamina 100

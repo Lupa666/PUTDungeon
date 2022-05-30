@@ -1,3 +1,4 @@
+96 0
 name Cerber
 dmg 7
 stamina 100

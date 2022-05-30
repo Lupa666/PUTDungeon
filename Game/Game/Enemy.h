@@ -4,7 +4,6 @@
 #include <map>
 #include <algorithm>
 
-
 class Enemy :
 	public GameObject
 {
@@ -14,6 +13,7 @@ private:
 	DynamicText *NAME, *HP, *STAMINA;
 
 public:
+	int currentHP;
 	int tileX = 2;
 	int tileY = 3;
 	std::map<std::string, float> EnemyStats;

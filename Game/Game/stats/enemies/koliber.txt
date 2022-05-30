@@ -1,3 +1,4 @@
+96 32
 name HBird
 dmg 1
 health 1

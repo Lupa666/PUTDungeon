@@ -1,4 +1,5 @@
-name WaterElement
+0 64
+name WaterElemental
 dmg 12
 health 75
 stamina 100
