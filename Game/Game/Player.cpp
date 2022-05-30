@@ -7,6 +7,7 @@ Player::Player(const char* texturesheet, int x, int y, int h, int w, int xStart 
 	GameObject(texturesheet, x, y, h, w), tileX(xStart), tileY(yStart)
 {
 	playerClass = pC;
+	
 	std::ifstream stats;
 	stats.open(StatsPath);
 	std::string temp;
@@ -246,6 +247,7 @@ Item::Item(SDL_Texture *& text, int x = 1, int y = 1):
 		else { //rainbow
 			filePath += "rainbow/";
 		}
+		std::cout << Player::playerClass << "\n";
 		switch (Player::playerClass) {
 		case 0: {
 			bool sworsh = rand() % 2;

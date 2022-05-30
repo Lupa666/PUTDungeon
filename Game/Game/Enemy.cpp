@@ -24,6 +24,15 @@ Enemy::Enemy(SDL_Texture *& text, int xpos = 4, int ypos = 4) :
 
 Enemy::~Enemy()
 {
+	//delete NAME, HP, STAMINA;
+}
+
+void Enemy::LoadStats()
+{
+}
+
+void Enemy::SetText(int, int)
+{
 }
 
 void Enemy::LoadTexture(const char * filepath = "assets/enemy.png")
@@ -33,12 +42,6 @@ void Enemy::LoadTexture(const char * filepath = "assets/enemy.png")
 
 void Enemy::Update()
 {
-	counter++;
-	if (counter == 30) {
-		counter = 0;
-		srcRect.x = 32 * (rand() % 2);
-		srcRect.y = 32 * (rand() % 2);
-	}
 	destRect.x = TileMap::getTilePosX(tileX);
 	destRect.y = TileMap::getTilePosY(tileY);
 	destRect.w = srcRect.w;
@@ -48,4 +51,8 @@ void Enemy::Update()
 void Enemy::Render()
 {
 	SDL_RenderCopy(GameLoop::renderer, objTexture, &srcRect, &destRect);
+}
+
+void Enemy::RenderText(int, int)
+{
 }

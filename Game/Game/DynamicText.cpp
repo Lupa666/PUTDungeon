@@ -11,7 +11,7 @@ DynamicText::DynamicText(const char* font_path, int font_size, const char* msg_t
 }
 
 DynamicText::~DynamicText() {
-	SDL_DestroyTexture(text_texture);
+	//SDL_DestroyTexture(text_texture);
 	
 }
 

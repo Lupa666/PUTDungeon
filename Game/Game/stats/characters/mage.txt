@@ -3,6 +3,8 @@ health 125
 stamina 150
 amunition 100000
 dmg 10
+dmgrange 15
+rangecost 25
 elem 3.5 
 elemcost 70
 regenf 20 
