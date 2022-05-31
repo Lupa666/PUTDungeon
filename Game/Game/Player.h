@@ -68,7 +68,8 @@ public:
 	}
 	virtual void Update();
 	virtual void UpdateStatsText();
-	virtual void Render();
+	virtual void RenderMinStats(int, int);
+	virtual void Render(int x = 16, int y = 440, bool renderMinStats = true);
 	virtual void RenderInventory(int, int);
 	virtual void RenderStats(int, int);
 	virtual void Attack();

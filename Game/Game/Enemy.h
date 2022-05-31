@@ -9,11 +9,12 @@ class Enemy :
 {
 private:
 
-	int enemyName;
-	DynamicText *NAME, *HP, *STAMINA;
+	std::string enemyName;
+	DynamicText NAME, HP, STAMINA;
 
 public:
 	int currentHP;
+	int currentStamina;
 	int tileX = 2;
 	int tileY = 3;
 	std::map<std::string, float> EnemyStats;
@@ -23,9 +24,9 @@ public:
 	Enemy(SDL_Texture *&, int, int);
 	~Enemy();
 	void LoadStats();
-	void SetText(int, int);
 	void LoadTexture(const char*);
 	void Update();
+	void UpdateText();
 	void Render();
 	void RenderText(int, int);
 };

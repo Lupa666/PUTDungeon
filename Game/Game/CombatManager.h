@@ -4,5 +4,8 @@
 
 class CombatManager
 {
+public:
+	CombatManager();
+	~CombatManager();
 };
 

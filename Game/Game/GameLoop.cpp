@@ -18,6 +18,7 @@
 #include "TileMap.h"
 #include <cstdlib>
 #include <algorithm>
+#include "CombatManager.h"
 
 #include "InventoryManagement.h"
 
@@ -101,25 +102,26 @@ void GameLoop::handleEvents() {
 				switch (startMenu->getMenuState()) {
 				case MenuSelect::start: {
 					if (startMenu->getStartSelect()) {
-						generateFloor();
 						switch (startMenu->getClassState()) {
 						case ClassSelect::warrior : {
-							player = new Warrior(currentMap->startPosX, currentMap->startPosY);
+							player = new Warrior();
 							break;
 						}
 						case ClassSelect::mage: {
-							player = new Mage(currentMap->startPosX, currentMap->startPosY);
+							player = new Mage();
 							break;
 						}
 						case ClassSelect::archer: {
-							player = new Archer(currentMap->startPosX, currentMap->startPosY);
+							player = new Archer();
 							break;
 						}
 						case ClassSelect::thief: {
-							player = new Thief(currentMap->startPosX, currentMap->startPosY);
+							player = new Thief();
 							break;
 						}
 						}
+						generateFloor();
+						player->SetPos(currentMap->startPosX, currentMap->startPosY);
 						inventory = new InventoryManagement(player);
 						delete startMenu;
 					}
@@ -326,9 +328,13 @@ void GameLoop::render() {
 	case GameState::play: {
 		currentMap->Render();
 		dungeonLevel->Render(30, 8);
+		int n = 0;
+		int spacing = 80;
 		for (auto & enem : enemies)
 		{
 			enem.Render();
+			enem.RenderText(700, 10 + (n*spacing));
+			n++;
 		}
 		for (auto & it : items)
 		{
@@ -347,6 +353,8 @@ void GameLoop::render() {
 		break;
 	}
 	case GameState::combat: {
+		int n = 0;
+
 		break;
 	}
 	case GameState::inventory: {

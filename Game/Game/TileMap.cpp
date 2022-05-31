@@ -77,7 +77,6 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 		while (!occupiedCheck) {
 			occupiedCheck = true;
 			for (int i : startingSteps) {
-				std::cout << "Steps " << i << "\n";
 				if (i == steps) { 
 					steps += rand() % 5;
 					occupiedCheck = false; }

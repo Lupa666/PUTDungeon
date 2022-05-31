@@ -142,11 +142,19 @@ void Player::SetPos(int x, int y)
 	tileY = y;
 }
 
-void Player::Render() {
-	NAME->Render(16, 420);
-	HP->Render(16, 440);
-	ST->Render(16, 460);
-	AMMO->Render(16, 480);
+void Player::RenderMinStats(int x, int y) {
+
+	int spacing = 20;
+	NAME->Render(x, y);
+	HP->Render(x, y+(spacing*1));
+	ST->Render(x, y + (spacing * 2));
+	AMMO->Render(x, y + (spacing * 3));
+}
+
+void Player::Render(int x, int y, bool renderMinStats) {
+	if(renderMinStats){
+		RenderMinStats(x, y);
+	}
 	GameObject::Render();
 }
 
@@ -247,7 +255,6 @@ Item::Item(SDL_Texture *& text, int x = 1, int y = 1):
 		else { //rainbow
 			filePath += "rainbow/";
 		}
-		std::cout << Player::playerClass << "\n";
 		switch (Player::playerClass) {
 		case 0: {
 			bool sworsh = rand() % 2;
