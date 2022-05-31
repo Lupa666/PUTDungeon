@@ -3,20 +3,17 @@
 
 TileMap::TileMap(int x, int y)
 {
-	tiles[0] = new Tile("assets/wall.png", 32, 32);
-	tiles[1] = new Tile("assets/ground.png", 32, 32);
-	tiles[2] = new Tile("assets/selector.png", 32, 32);
+	tiles[0] = Tile("assets/wall.png", 32, 32);
+	tiles[1] = Tile("assets/ground.png", 32, 32);
+	tiles[2] = Tile("assets/selector.png", 32, 32);
 	xStart = x;
 	yStart = y;
 }
 
+
 TileMap::~TileMap()
 {
-	delete tiles[0], tiles[1], tiles[2], tiles[3];
-}
-
-void TileMap::Update()
-{
+	//delete tiles[0], tiles[1], tiles[2];
 }
 
 void TileMap::Render()
@@ -26,7 +23,7 @@ void TileMap::Render()
 			int xRender, yRender;
 			xRender = xStart + j*size;
 			yRender = yStart + i*size;
-			tiles[MapArea[j][i]]->Render(xRender, yRender);
+			tiles[MapArea[j][i]].Render(xRender, yRender);
 			}
 		}
 	}
@@ -120,6 +117,10 @@ Tile::Tile(const char* texturesheet, int h, int w)
 	srcRect.x = 0;
 	srcRect.y = 0;
 	objTexture = TextureLoader::LoadText(texturesheet);
+}
+
+Tile::Tile() {
+
 }
 
 Tile::~Tile()

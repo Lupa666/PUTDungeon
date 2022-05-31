@@ -13,6 +13,7 @@ class Item : public GameObject {
 
 public:
 	std::string itemName;
+	std::vector<std::string> CharacterActions;
 	std::map<std::string, int> ItemStats;
 	std::vector<std::shared_ptr<DynamicText>> ItemText;
 	DynamicText* name = nullptr;
@@ -23,6 +24,7 @@ public:
 	Item(int, int); //rolls for random item
 	~Item();
 	void Render();
+	void UpdateText();
 	void Update();
 	void GenerateText();
 	void RenderText(int xp, int yp);
@@ -33,6 +35,7 @@ class Player : public GameObject
 {
 public:
 	
+	std::vector<std::string> CombatActions;
 	std::map<std::string, float> PlayerStats;
 	std::map<int, Item> EquippedItems;
 	std::vector<std::shared_ptr<DynamicText>> StatsText;

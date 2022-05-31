@@ -100,6 +100,7 @@ void Enemy::Update()
 
 void Enemy::UpdateText()
 {
+	NAME.loadFont(enemyName.c_str(), { 255, 255, 255, 255 });
 	HP.loadFont(("HP " + std::to_string((int)currentHP) + " " + std::to_string((int)EnemyStats["health"])).c_str(), { 255, 255, 255, 255 });
 	STAMINA.loadFont(("ST " + std::to_string((int)currentStamina) + " " + std::to_string((int)EnemyStats["stamina"])).c_str(), { 255, 255, 255, 255 });
 }

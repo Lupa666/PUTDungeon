@@ -18,8 +18,10 @@ private:
 	SDL_Rect srcRect, destRect;
 public:
 	Tile(const char* texturesheet, int h, int w);
+	Tile();
 	~Tile();
 
+	//void Update();
 	void Render(int x, int y);
 };
 
@@ -29,7 +31,7 @@ private:
 	std::vector<int> startingSteps;
 	int sizeX = 20, sizeY = 12;
 	int MapArea[20][12];
-	Tile *tiles[4];
+	Tile tiles[3];
 
 	static int xStart, yStart;
 	static int size;
@@ -48,7 +50,7 @@ public:
 
 	void LoadMap(const char*);
 	void GetNewEnemyPos(int &x, int &y);
-	void Update();
+	//void Update();
 	void Render();
 
 	int PlayerXStart, PlayerYStart;

@@ -31,6 +31,7 @@ GameObject* overScreen;
 DynamicText* dungeonLevel;
 SDL_Texture * enemyTexture;
 SDL_Texture * itemTexture;
+CombatManager * combat;
 
 std::vector<Item> items;
 std::vector<Enemy> enemies;
@@ -72,6 +73,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	enemyTexture = TextureLoader::LoadText("assets/enemy.png");
 	itemTexture = TextureLoader::LoadText("assets/item.png");
+	combat = new CombatManager();
 }
 
 void GameLoop::handleEvents() {
@@ -200,7 +202,32 @@ void GameLoop::handleEvents() {
 		}
 		break;
 	}
+
 	case GameState::combat: {
+		switch (event.type) {
+		case SDL_KEYDOWN: { //when key is pressed or held
+			switch (GameLoop::event.key.keysym.sym) {
+			case SDLK_DOWN: {
+				combat->EndCombat();
+				gameState = GameState::play;
+				break;
+			}
+			case SDLK_UP: {
+				break;
+			}
+			case SDLK_LEFT: {
+				break;
+			}
+			case SDLK_RIGHT: {
+				break;
+			}
+			case SDLK_ESCAPE: {
+				break;
+			}
+			}
+			break;
+		}
+		}
 		break;
 	}
 	case GameState::inventory: {
@@ -236,10 +263,6 @@ void GameLoop::handleEvents() {
 				GameLoop::gameState = GameState::play;
 				break;
 			}
-			case SDLK_o: {
-				player->CurrentHealth -= 7;
-				break;
-			}
 			case SDLK_ESCAPE: {
 				GameLoop::gameState = GameState::play;
 				break;
@@ -248,9 +271,16 @@ void GameLoop::handleEvents() {
 			break;
 		}
 		}
+		break;
 	}
-	case GameState::over: {
 
+	case GameState::over: {
+		switch (event.type) {
+		case SDL_KEYDOWN: { //when key is pressed or held
+			isRunning = false;
+		}
+		}
+		break;
 	}
 	}
 	if (event.type == SDL_QUIT) {
@@ -279,18 +309,22 @@ void GameLoop::update()
 		for (auto & it : items)
 		{
 			it.Update();
-		}
-		for (auto & enem : enemies)
-		{
-			if (
-				(enem.tileX - 1 <= player->tileX and enem.tileX + 1 >= player->tileX)
-				and
-				(enem.tileY - 1 <= player->tileY and enem.tileY + 1 >= player->tileY)
-				) {
-				//gameState = GameState::combat;
+			if ((player->tileX == it.xPos) and (player->tileY == it.yPos)) {
+				it.UpdateText();
 			}
-
-			enem.Update();
+		}
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			enemies[i].Update();
+			if (
+				(enemies[i].tileX - 1 <= player->tileX and enemies[i].tileX + 1 >= player->tileX)
+				and
+				(enemies[i].tileY - 1 <= player->tileY and enemies[i].tileY + 1 >= player->tileY)
+				) {
+				combat->LoadEnemy(enemies[i]);
+				gameState = GameState::combat;
+				enemies.erase(enemies.begin()+i);
+			}
 		}
 		if (player->tileX == currentMap->xEnd and player->tileY == currentMap->yEnd) {
 			generateFloor();
@@ -300,6 +334,9 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::combat: {
+		player->Update();
+		player->SetDest(200, 200, 60, 60);
+		combat->Update();
 		break;
 	}
 	case GameState::inventory: {
@@ -333,7 +370,6 @@ void GameLoop::render() {
 		for (auto & enem : enemies)
 		{
 			enem.Render();
-			enem.RenderText(700, 10 + (n*spacing));
 			n++;
 		}
 		for (auto & it : items)
@@ -353,8 +389,8 @@ void GameLoop::render() {
 		break;
 	}
 	case GameState::combat: {
-		int n = 0;
-
+		combat->Render();
+		player->Render();
 		break;
 	}
 	case GameState::inventory: {
@@ -402,7 +438,7 @@ void GameLoop::generateFloor()
 }
 
 void GameLoop::clean() {//cleans after closing the game
-	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel;
+	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel, combat;
 	SDL_DestroyTexture(enemyTexture);
 	SDL_DestroyTexture(itemTexture);
 	SDL_DestroyWindow(window);

@@ -415,6 +415,17 @@ void Item::Render()
 	}
 }
 
+void Item::UpdateText()
+{
+	name->loadFont((itemName).c_str(), { 255, 255, 255, 255 });
+	auto statsIt = ItemStats.begin();
+	for (auto it : ItemText) {
+		std::string temp = statsIt->first + " " + std::to_string(statsIt->second);
+		it->loadFont(temp.c_str(), { 255, 255, 255, 255 });
+		statsIt++;
+	}
+}
+
 void Item::GenerateText()
 {
 	for (auto &x : ItemStats)
@@ -441,6 +452,8 @@ void Item::RenderText(int xp, int yp)
 		n++;
 	}
 }
+
+
 
 void Item::Update()
 {
