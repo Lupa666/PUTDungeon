@@ -3,8 +3,8 @@
 
 void Archer::LoadCombatActions()
 {
-	CombatActions.push_back("Range");
 	CombatActions.push_back("Melee");
+	CombatActions.push_back("Range");
 }
 
 void Archer::TakeDamage(int dmg)

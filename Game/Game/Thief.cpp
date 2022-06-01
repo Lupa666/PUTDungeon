@@ -2,9 +2,9 @@
 
 void Thief::LoadCombatActions()
 {
-	CombatActions.push_back("Cut");
-	CombatActions.push_back("Range");
 	CombatActions.push_back("Melee");
+	CombatActions.push_back("Range");
+	CombatActions.push_back("Cut");
 }
 
 void Thief::TakeDamage(int dmg)

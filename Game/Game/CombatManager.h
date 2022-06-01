@@ -11,12 +11,13 @@ class CombatManager
 private:
 	int choiceAction = 0;
 	int choiceEnemy = 0;
-	Selector SelectAction, SelectEnemy;
+	int actionsNumber = 0;
+	Selector *SelectAction, *SelectEnemy;
 	DynamicText FIGHT;
 	Player* toManagePlayer;
 	DynamicText WATER, WIND, FIRE, EARTH;
 	std::vector<Enemy> toFightEnemies;
-	std::vector<DynamicText> playerActions;
+	std::vector<DynamicText*> playerActions;
 public:
 	CombatManager(Player*);
 	~CombatManager();

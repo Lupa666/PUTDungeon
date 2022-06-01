@@ -208,21 +208,24 @@ void GameLoop::handleEvents() {
 		case SDL_KEYDOWN: { //when key is pressed or held
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
-				combat->EndCombat();
-				gameState = GameState::play;
+				combat->SelectDown();
 				break;
 			}
 			case SDLK_UP: {
-				
+				combat->SelectUp();
 				break;
 			}
 			case SDLK_LEFT: {
+				combat->SelectLeft();
 				break;
 			}
 			case SDLK_RIGHT: {
+				combat->SelectRight();
 				break;
 			}
 			case SDLK_ESCAPE: {
+				combat->EndCombat();
+				gameState = GameState::play;
 				break;
 			}
 			}
