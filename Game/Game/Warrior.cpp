@@ -34,15 +34,27 @@ int Warrior::RangeAttack()
 
 int Warrior::ElementalAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["elemcost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["elemcost"];
+	return PlayerStats["dmgrange"]*PlayerStats["elem"];
 }
 
 int Warrior::CutAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["cietycost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["cietycost"];
+	return PlayerStats["dmg"] * PlayerStats["ciety"];
 }
 
 int Warrior::CrushAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["obuchowycost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["obuchowycost"];
+	return PlayerStats["dmg"] * PlayerStats["obuchowycost"];
 }

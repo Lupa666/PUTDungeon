@@ -46,7 +46,6 @@ void CombatManager::SelectLeft()
 	if (choiceAction < 0) {
 		choiceAction = 7;
 	}
-	std::cout << choiceAction << "\n";
 }
 
 void CombatManager::SelectRight()
@@ -58,7 +57,6 @@ void CombatManager::SelectRight()
 	if (choiceAction >= 8) {
 		choiceAction = 0;
 	}
-	std::cout << choiceAction << "\n";
 }
 
 
@@ -141,4 +139,62 @@ void CombatManager::Render(int x, int y)
 void CombatManager::HurtPlayer()
 {
 	toManagePlayer->CurrentHealth -= 20;
+}
+
+void CombatManager::PressEnter()
+{
+	int ToDealDamage = 0;
+	int Element = 0;
+	switch (choiceAction) {
+	case 0: {
+		ToDealDamage = toManagePlayer->MeleeAttack();
+		break;
+	}
+	case 1: {
+		ToDealDamage = toManagePlayer->RangeAttack();
+		break;
+	}
+	case 2: {
+		ToDealDamage = toManagePlayer->CutAttack();
+		break;
+	}
+	case 3: {
+		ToDealDamage = toManagePlayer->CrushAttack();
+		break;
+	}
+	case 4: {
+		if (toManagePlayer->ElementalType[1]) {
+			Element = 1;
+			ToDealDamage = toManagePlayer->ElementalAttack();
+		}
+		break;
+	}
+	case 5: {
+		if (toManagePlayer->ElementalType[2]) {
+			Element = 2;
+			ToDealDamage = toManagePlayer->ElementalAttack();
+		}
+		break;
+	}
+	case 6: {
+		if (toManagePlayer->ElementalType[3]) {
+			Element = 3;
+			ToDealDamage = toManagePlayer->ElementalAttack();
+		}
+		break;
+	}
+	case 7: {
+		if (toManagePlayer->ElementalType[4]) {
+			Element = 4;
+			ToDealDamage = toManagePlayer->ElementalAttack();
+		}
+		break;
+	}
+	} //chooses what action to make
+	if (ToDealDamage) {
+		std::cout << "Player attacked for: " << ToDealDamage << " With element:" << Element << "\n";
+	}
+	else {
+		std::cout << "Couldn't take action!" << "\n";
+	}
 }

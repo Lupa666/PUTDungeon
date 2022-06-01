@@ -228,6 +228,10 @@ void GameLoop::handleEvents() {
 				gameState = GameState::play;
 				break;
 			}
+			case SDLK_RETURN: {
+				combat->PressEnter();
+				break;
+			}
 			}
 			break;
 		}

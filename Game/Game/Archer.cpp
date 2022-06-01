@@ -9,19 +9,29 @@ void Archer::LoadCombatActions()
 
 void Archer::TakeDamage(int dmg)
 {
+	CurrentHealth -= dmg;
 }
 
 int Archer::MeleeAttack()
 {
-	return 0;
+	return PlayerStats["dmg"];
 }
 
 int Archer::RangeAttack()
 {
-	return 0;
+	if (CurrentAmmo < 1 and CurrentStamina < PlayerStats["rangecost"]) {
+		return 0;
+	}
+	CurrentAmmo--;
+	CurrentStamina -= PlayerStats["rangecost"];
+	return PlayerStats["dmgrange"];
 }
 
 int Archer::ElementalAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["elemcost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["elemcost"];
+	return PlayerStats["dmgrange"] * PlayerStats["elem"];
 }

@@ -41,7 +41,7 @@ public:
 	int CurrentHealth;
 	int CurrentStamina;
 	int CurrentAmmo;
-	short int ElementalType[5] = { 1, 0, 0, 0, 0 };
+	short int ElementalType[5] = { 1, 0, 0, 0, 0 }; //normal, water, wind, fire, earth
 	static int playerClass;
 
 	DynamicText *HP, *ST, *AMMO, *NAME, *EQ;
@@ -77,5 +77,11 @@ public:
 	virtual void RenderStats(int, int);
 
 	virtual void LoadCombatActions() {}
+
+	virtual int MeleeAttack() { return 0; }
+	virtual int RangeAttack() { return 0; }
+	virtual int ElementalAttack() { return 0; }
+	virtual int CutAttack() { return 0; }
+	virtual int CrushAttack() { return 0; }
 };
 

@@ -12,6 +12,7 @@ private:
 	int choiceAction = 0;
 	int choiceEnemy = 0;
 	int actionsNumber = 0;
+	bool enemyTurn = 0;
 	Selector *SelectAction, *SelectEnemy;
 	DynamicText FIGHT;
 	Player* toManagePlayer;
@@ -33,5 +34,7 @@ public:
 	void Render(int x = 0, int y = 0);
 
 	void HurtPlayer();
+	void PressEnter();
+	void EnemyTurn();
 };
 

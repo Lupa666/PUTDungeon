@@ -9,24 +9,38 @@ void Thief::LoadCombatActions()
 
 void Thief::TakeDamage(int dmg)
 {
+	CurrentHealth -= dmg;
 }
 
 int Thief::MeleeAttack()
 {
-	return 0;
+	return PlayerStats["dmg"];
 }
 
 int Thief::RangeAttack()
 {
-	return 0;
+	if (CurrentAmmo < 1 and CurrentStamina < PlayerStats["rangecost"]) {
+		return 0;
+	}
+	CurrentAmmo--;
+	CurrentStamina -= PlayerStats["rangecost"];
+	return PlayerStats["dmgrange"];
 }
 
 int Thief::ElementalAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["elemcost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["elemcost"];
+	return PlayerStats["dmgrange"] * PlayerStats["elem"];
 }
 
 int Thief::CutAttack()
 {
-	return 0;
+	if (CurrentStamina < PlayerStats["elemcost"]) {
+		return 0;
+	}
+	CurrentStamina -= PlayerStats["elemcost"];
+	return PlayerStats["dmgrange"] * PlayerStats["elem"];
 }
