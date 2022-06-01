@@ -34,6 +34,9 @@ Player::Player(const char* texturesheet, int x, int y, int h, int w, int xStart 
 
 void Player::RegenFull()
 {
+	CurrentHealth = PlayerStats["health"];
+	CurrentStamina = PlayerStats["stamina"];
+	CurrentAmmo = PlayerStats["amunition"];
 }
 
 bool Player::Equip(Item &item)
@@ -142,6 +145,28 @@ void Player::SetPos(int x, int y)
 	tileY = y;
 }
 
+void Player::RegenRound()
+{
+	CurrentStamina += PlayerStats["regenr"];
+	if (CurrentStamina > PlayerStats["stamina"]) {
+		CurrentStamina = PlayerStats["stamina"];
+	}
+}
+
+void Player::RegenFight()
+{
+	CurrentHealth += PlayerStats["health"]/3;
+	if (CurrentHealth > PlayerStats["health"]) {
+		CurrentHealth = PlayerStats["health"];
+	}
+
+	CurrentStamina += PlayerStats["regenf"];
+	if (CurrentStamina> PlayerStats["stamina"]) {
+		CurrentStamina = PlayerStats["stamina"];
+	}
+	
+}
+
 void Player::RenderMinStats(int x, int y) {
 
 	int spacing = 20;
@@ -178,10 +203,6 @@ void Player::RenderStats(int xp, int yp)
 		st->Render(xp, yp + 20 + (spacing*n));
 		n++;
 	}
-}
-
-void Player::Attack()
-{
 }
 
 ///////////////////////////

@@ -13,7 +13,6 @@ class Item : public GameObject {
 
 public:
 	std::string itemName;
-	std::vector<std::string> CharacterActions;
 	std::map<std::string, int> ItemStats;
 	std::vector<std::shared_ptr<DynamicText>> ItemText;
 	DynamicText* name = nullptr;
@@ -34,7 +33,6 @@ public:
 class Player : public GameObject
 {
 public:
-	
 	std::vector<std::string> CombatActions;
 	std::map<std::string, float> PlayerStats;
 	std::map<int, Item> EquippedItems;
@@ -60,6 +58,8 @@ public:
 	void MoveRight(bool tileCheck = true);
 	void SetPos(int x, int y);
 
+	void RegenRound();
+	void RegenFight();
 	void RegenFull();
 	bool Equip(Item&);
 	void MakeStatsText();
@@ -75,6 +75,7 @@ public:
 	virtual void Render(int x = 16, int y = 440, bool renderMinStats = true);
 	virtual void RenderInventory(int, int);
 	virtual void RenderStats(int, int);
-	virtual void Attack();
+
+	virtual void LoadCombatActions() {}
 };
 

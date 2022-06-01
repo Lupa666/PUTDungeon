@@ -73,7 +73,6 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	enemyTexture = TextureLoader::LoadText("assets/enemy.png");
 	itemTexture = TextureLoader::LoadText("assets/item.png");
-	combat = new CombatManager();
 }
 
 void GameLoop::handleEvents() {
@@ -125,6 +124,7 @@ void GameLoop::handleEvents() {
 						generateFloor();
 						player->SetPos(currentMap->startPosX, currentMap->startPosY);
 						inventory = new InventoryManagement(player);
+						combat = new CombatManager(player);
 						delete startMenu;
 					}
 					else {
@@ -213,6 +213,7 @@ void GameLoop::handleEvents() {
 				break;
 			}
 			case SDLK_UP: {
+				
 				break;
 			}
 			case SDLK_LEFT: {
@@ -334,6 +335,13 @@ void GameLoop::update()
 		break;
 	}
 	case GameState::combat: {
+		if (player->CurrentHealth < 1) {
+			overScreen = new GameObject("Assets/over.png", 0, 0, 640, 800);
+			overScreen->SetDest(0, 0, 640, 800);
+			gameState = GameState::over;
+			overScreen->Update();
+			break;
+		}
 		player->Update();
 		player->SetDest(200, 200, 60, 60);
 		combat->Update();
