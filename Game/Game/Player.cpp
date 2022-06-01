@@ -155,7 +155,7 @@ void Player::RegenRound()
 
 void Player::RegenFight()
 {
-	CurrentHealth += PlayerStats["health"]/3;
+	CurrentHealth += PlayerStats["health"]/10;
 	if (CurrentHealth > PlayerStats["health"]) {
 		CurrentHealth = PlayerStats["health"];
 	}

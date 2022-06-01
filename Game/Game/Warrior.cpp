@@ -24,7 +24,7 @@ int Warrior::MeleeAttack()
 
 int Warrior::RangeAttack()
 {
-	if (CurrentAmmo < 1 and CurrentStamina < PlayerStats["rangecost"]) {
+	if (CurrentAmmo < 1 or CurrentStamina < PlayerStats["rangecost"]) {
 		return 0;
 	}
 	CurrentAmmo--;
@@ -34,9 +34,10 @@ int Warrior::RangeAttack()
 
 int Warrior::ElementalAttack()
 {
-	if (CurrentStamina < PlayerStats["elemcost"]) {
+	if (CurrentStamina < PlayerStats["elemcost"] or CurrentAmmo <= 0) {
 		return 0;
 	}
+	CurrentAmmo--;
 	CurrentStamina -= PlayerStats["elemcost"];
 	return PlayerStats["dmgrange"]*PlayerStats["elem"];
 }

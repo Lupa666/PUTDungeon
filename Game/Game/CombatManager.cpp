@@ -80,12 +80,14 @@ void CombatManager::EndCombat()
 	choiceEnemy = 0;
 	toFightEnemies.clear();
 	toManagePlayer->RegenFight();
+	GameLoop::gameState = GameState::play;
 }
 
 void CombatManager::Update()
 {
 	int n = 0;
 	int space = 100;
+	
 	for (auto & i : toFightEnemies) {
 		i.SetDest(400, 200+(space*n), 60, 60);
 		n++;
@@ -193,8 +195,38 @@ void CombatManager::PressEnter()
 	} //chooses what action to make
 	if (ToDealDamage) {
 		std::cout << "Player attacked for: " << ToDealDamage << " With element:" << Element << "\n";
+		toFightEnemies[choiceEnemy].TakeDamage(ToDealDamage,Element);
+		CheckClearEnemies();
+		enemyTurn = true;
 	}
 	else {
 		std::cout << "Couldn't take action!" << "\n";
 	}
+	if (!NoEnemies()) {
+		EndCombat();
+		return;
+	}
+	if (enemyTurn) {
+		EnemyAction();
+		toManagePlayer->RegenRound();
+		enemyTurn = false;
+	}
+}
+
+void CombatManager::CheckClearEnemies()
+{
+	for (int i = 0; i < toFightEnemies.size(); i++) {
+		if (toFightEnemies[i].currentHP < 1) {
+			toFightEnemies.erase(toFightEnemies.begin()+i);
+			i--;
+		}
+	}
+}
+
+void CombatManager::EnemyAction()
+{
+	//temporary
+	for (int i = 0; i < toFightEnemies.size(); i++) {
+		toManagePlayer->TakeDamage(toFightEnemies[i].EnemyStats["dmg"]);
+	}	
 }

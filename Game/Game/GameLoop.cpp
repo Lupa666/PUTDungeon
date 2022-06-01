@@ -225,7 +225,6 @@ void GameLoop::handleEvents() {
 			}
 			case SDLK_ESCAPE: {
 				combat->EndCombat();
-				gameState = GameState::play;
 				break;
 			}
 			case SDLK_RETURN: {
@@ -447,7 +446,7 @@ void GameLoop::generateFloor()
 		currentMap->GetNewEnemyPos(x, y);
 		items.push_back(Item(itemTexture, x, y));
 	}
-
+	player->RegenFull();
 	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
 }

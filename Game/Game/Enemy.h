@@ -29,5 +29,7 @@ public:
 	void UpdateText();
 	void Render();
 	void RenderText(int, int);
+
+	void TakeDamage(int dmg, int type);
 };
 

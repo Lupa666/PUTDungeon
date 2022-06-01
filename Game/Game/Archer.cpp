@@ -19,7 +19,7 @@ int Archer::MeleeAttack()
 
 int Archer::RangeAttack()
 {
-	if (CurrentAmmo < 1 and CurrentStamina < PlayerStats["rangecost"]) {
+	if (CurrentAmmo < 1 or CurrentStamina < PlayerStats["rangecost"]) {
 		return 0;
 	}
 	CurrentAmmo--;
@@ -29,9 +29,10 @@ int Archer::RangeAttack()
 
 int Archer::ElementalAttack()
 {
-	if (CurrentStamina < PlayerStats["elemcost"]) {
+	if (CurrentStamina < PlayerStats["elemcost"] or CurrentAmmo <= 0) {
 		return 0;
 	}
+	CurrentAmmo--;
 	CurrentStamina -= PlayerStats["elemcost"];
 	return PlayerStats["dmgrange"] * PlayerStats["elem"];
 }

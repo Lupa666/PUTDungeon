@@ -78,6 +78,7 @@ public:
 
 	virtual void LoadCombatActions() {}
 
+	virtual void TakeDamage(int dmg) {}
 	virtual int MeleeAttack() { return 0; }
 	virtual int RangeAttack() { return 0; }
 	virtual int ElementalAttack() { return 0; }

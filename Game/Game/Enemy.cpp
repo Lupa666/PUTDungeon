@@ -123,3 +123,43 @@ void Enemy::RenderText(int xpos, int ypos)
 	n++;
 	STAMINA.Render(xpos, ypos + (n*spacing));
 }
+
+void Enemy::TakeDamage(int dmg, int type)
+{
+	if ((int)EnemyStats["type"] == type) {
+		currentHP--;
+		return;
+	}
+	switch ((int)EnemyStats["type"]) {
+	case 1: {
+		if (type == 4) {
+			currentHP -= dmg*4;
+			return;
+		}
+		break;
+	}
+	case 2: {
+		if (type == 3) {
+			currentHP -= dmg * 4;
+			return;
+		}
+		break;
+	}
+	case 3: {
+		if (type == 1) {
+			currentHP -= dmg * 4;
+			return;
+		}
+		break;
+	}
+	case 4: {
+		if (type == 2) {
+			currentHP -= dmg * 4;
+			return;
+		}
+		break;
+	}
+	}
+	currentHP -= dmg;
+	return;
+}
