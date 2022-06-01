@@ -126,7 +126,7 @@ void Enemy::RenderText(int xpos, int ypos)
 
 void Enemy::TakeDamage(int dmg, int type)
 {
-	if ((int)EnemyStats["type"] == type) {
+	if ((type != 0) and ((int)EnemyStats["type"] == type)) {
 		currentHP--;
 		return;
 	}
