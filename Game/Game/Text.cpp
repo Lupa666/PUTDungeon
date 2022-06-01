@@ -9,6 +9,7 @@ Text::Text(const char* font_path, int font_size, const char* msg_text, const SDL
 
 Text::~Text() {
 	SDL_DestroyTexture(text_texture);
+	text_texture = nullptr;
 }
 
 void Text::Render(int x, int y){

@@ -423,7 +423,7 @@ void GameLoop::generateFloor()
 	floorLevel++;
 	delete currentMap;
 	currentMap = new TileMap(12, 32);
-	int mapTemp = rand() % 5+1;
+	int mapTemp = rand() % 9+1;
 	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
 	currentMap->LoadMap(mapPath.c_str());
 	int size = rand() % 3 + 5;
@@ -451,7 +451,9 @@ void GameLoop::generateFloor()
 void GameLoop::clean() {//cleans after closing the game
 	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel, combat;
 	SDL_DestroyTexture(enemyTexture);
+	enemyTexture = nullptr;
 	SDL_DestroyTexture(itemTexture);
+	itemTexture = nullptr;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	TTF_Quit();

@@ -3,9 +3,9 @@
 
 TileMap::TileMap(int x, int y)
 {
-	tiles[0] = Tile("assets/wall.png", 32, 32);
-	tiles[1] = Tile("assets/ground.png", 32, 32);
-	tiles[2] = Tile("assets/selector.png", 32, 32);
+	tiles[0] = new Tile("assets/wall.png", 32, 32);
+	tiles[1] = new Tile("assets/ground.png", 32, 32);
+	tiles[2] = new Tile("assets/selector.png", 32, 32);
 	xStart = x;
 	yStart = y;
 }
@@ -13,7 +13,7 @@ TileMap::TileMap(int x, int y)
 
 TileMap::~TileMap()
 {
-	//delete tiles[0], tiles[1], tiles[2];
+	delete tiles[0], tiles[1], tiles[2];
 }
 
 void TileMap::Render()
@@ -23,7 +23,7 @@ void TileMap::Render()
 			int xRender, yRender;
 			xRender = xStart + j*size;
 			yRender = yStart + i*size;
-			tiles[MapArea[j][i]].Render(xRender, yRender);
+			tiles[MapArea[j][i]]->Render(xRender, yRender);
 			}
 		}
 	}
@@ -106,6 +106,7 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 	return;
 }
 
+
 int TileMap::xStart = 0;
 int TileMap::yStart = 64;
 int TileMap::size = 32;
@@ -126,6 +127,7 @@ Tile::Tile() {
 Tile::~Tile()
 {
 }
+
 
 void Tile::Render(int x, int y)
 {

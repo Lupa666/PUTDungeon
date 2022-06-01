@@ -38,12 +38,13 @@ void CombatManager::SelectDown()
 
 void CombatManager::SelectLeft()
 {
+
 	choiceAction--;
 	if (choiceAction < 4 and choiceAction >= actionsNumber) {
-		choiceAction = choiceAction + actionsNumber;
+		choiceAction = choiceAction - actionsNumber;
 	}
 	if (choiceAction < 0) {
-		choiceAction = actionsNumber+3;
+		choiceAction = 7;
 	}
 	std::cout << choiceAction << "\n";
 }

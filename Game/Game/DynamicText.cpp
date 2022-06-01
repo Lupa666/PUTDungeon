@@ -12,6 +12,7 @@ DynamicText::DynamicText(const char* font_path, int font_size, const char* msg_t
 
 DynamicText::~DynamicText() {
 	SDL_DestroyTexture(text_texture);
+	text_texture = nullptr;
 }
 
 void DynamicText::Render(int x, int y) {
@@ -24,6 +25,7 @@ void DynamicText::loadFont(const char* msg_text, const SDL_Color & color)
 {
 	font = TTF_OpenFont(font_p.c_str(), font_s);
 	SDL_DestroyTexture(text_texture);
+	text_texture = nullptr;
 	SDL_Surface* text_surface = TTF_RenderText_Solid(font, msg_text, color);
 	text_texture = SDL_CreateTextureFromSurface(GameLoop::renderer, text_surface);
 	TTF_CloseFont(font);

@@ -74,6 +74,9 @@ void Enemy::LoadStats()
 		else {
 			float value;
 			fileStats >> value;
+			if (key == "health" or key == "dmg") {
+				value *= (1 + 1.6*(GameLoop::floorLevel-1));
+			}
 			EnemyStats.try_emplace(key, value);
 		}
 	}
