@@ -31,5 +31,7 @@ public:
 	void RenderText(int, int);
 
 	void TakeDamage(int dmg, int type);
+	int Attack();
+	int SpecialAttack();
 };
 

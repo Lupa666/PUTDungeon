@@ -227,6 +227,21 @@ void CombatManager::EnemyAction()
 {
 	//temporary
 	for (int i = 0; i < toFightEnemies.size(); i++) {
-		toManagePlayer->TakeDamage(toFightEnemies[i].EnemyStats["dmg"]);
+		bool SuccesfullAttack = false;
+		int damage = 0;
+		while (!SuccesfullAttack) {
+			int temp = rand() % 5;
+			if (temp == 4) {
+				damage = toFightEnemies[i].Attack();
+			}
+			else {
+				damage = toFightEnemies[i].SpecialAttack();
+			}
+			if (damage != 0) {
+				SuccesfullAttack = true;
+			}
+		}
+		std::cout << "Player got attacked for: " << damage << " damage!\n";
+		toManagePlayer->TakeDamage(damage);
 	}	
 }

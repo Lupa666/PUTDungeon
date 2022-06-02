@@ -164,3 +164,17 @@ void Enemy::TakeDamage(int dmg, int type)
 	currentHP -= dmg;
 	return;
 }
+
+int Enemy::Attack()
+{
+	return EnemyStats["dmg"];
+}
+
+int Enemy::SpecialAttack()
+{
+	if (currentStamina >= EnemyStats["specialcost"]) {
+		currentStamina -= EnemyStats["specialcost"];
+		return (EnemyStats["dmg"] * EnemyStats["special"]);
+	}
+	return 0;
+}
