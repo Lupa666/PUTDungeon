@@ -57,5 +57,5 @@ int Warrior::CrushAttack()
 		return 0;
 	}
 	CurrentStamina -= PlayerStats["obuchowycost"];
-	return PlayerStats["dmg"] * PlayerStats["obuchowycost"];
+	return PlayerStats["dmg"] * PlayerStats["obuchowy"];
 }

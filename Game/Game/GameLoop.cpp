@@ -57,7 +57,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 		if (window) {
 			std::cout << "Window created\n";
 		}
-		renderer = SDL_CreateRenderer(window, -1, 0);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 		if (renderer) {
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 			std::cout << "Renderer created!\n";
