@@ -10,7 +10,7 @@ public:
 	~Text();
 	void Render(int x, int y);
 
-	static SDL_Texture *loadFont(const char* font_path, int font_size, const char*  msg_text, const SDL_Color &color);
+	static SDL_Texture *loadLabel(const char* font_path, int font_size, const char*  msg_text, const SDL_Color &color);
 
 private:
 	SDL_Texture* text_texture = nullptr;

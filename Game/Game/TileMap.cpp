@@ -3,6 +3,7 @@
 
 TileMap::TileMap(int x, int y)
 {
+	std::cout << "CREATING TILE MAP" << "\n";
 	tiles[0] = new Tile("assets/wall.png", 32, 32);
 	tiles[1] = new Tile("assets/ground.png", 32, 32);
 	tiles[2] = new Tile("assets/selector.png", 32, 32);
@@ -10,13 +11,11 @@ TileMap::TileMap(int x, int y)
 	yStart = y;
 }
 
+
 TileMap::~TileMap()
 {
-	delete tiles[0], tiles[1], tiles[2], tiles[3];
-}
-
-void TileMap::Update()
-{
+	std::cout << "DELETING TILE MAP" << "\n";
+	delete tiles[0], tiles[1], tiles[2];
 }
 
 void TileMap::Render()
@@ -77,7 +76,6 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 		while (!occupiedCheck) {
 			occupiedCheck = true;
 			for (int i : startingSteps) {
-				std::cout << "Steps " << i << "\n";
 				if (i == steps) { 
 					steps += rand() % 5;
 					occupiedCheck = false; }
@@ -110,6 +108,7 @@ void TileMap::GetNewEnemyPos(int & x, int & y)
 	return;
 }
 
+
 int TileMap::xStart = 0;
 int TileMap::yStart = 64;
 int TileMap::size = 32;
@@ -126,6 +125,7 @@ Tile::Tile(const char* texturesheet, int h, int w)
 Tile::~Tile()
 {
 }
+
 
 void Tile::Render(int x, int y)
 {

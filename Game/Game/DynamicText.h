@@ -7,15 +7,16 @@ class DynamicText
 {
 public:
 	DynamicText(const char* font_path, int font_size, const char* msg_text, const SDL_Color &color);
+
 	~DynamicText();
 	void Render(int x, int y);
 
-	void loadFont(const char* msg_text, const SDL_Color &color);
+	void loadLabel(const char* msg_text, const SDL_Color &color);
 
 	SDL_Texture* text_texture = nullptr;
 
 private:
-
+	std::string label;
 	TTF_Font * font;
 	std::string font_p;
 	int font_s;

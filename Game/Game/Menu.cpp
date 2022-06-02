@@ -6,7 +6,7 @@
 Menu::Menu(int fontsize, const char *font_path, const SDL_Color &color, int x = 100, int y = 50) :
 	xpos(x), ypos(y), font_size(fontsize)
 {
-	title = new Text(font_path, fontsize+12, "PUT DUNGEON V 02 MORE WORKING EDITION", color);
+	title = new Text(font_path, fontsize+12, "PUT DUNGEON", color);
 	start = new Text(font_path, fontsize, "START GAME", { 255, 255, 255, 255 });
 	options = new Text(font_path, fontsize, "AUTHORS", { 255, 255, 255, 255 });
 	quit = new Text(font_path, fontsize, "QUIT", { 255, 255, 255, 255 });
@@ -14,9 +14,9 @@ Menu::Menu(int fontsize, const char *font_path, const SDL_Color &color, int x = 
 	warrior = new Text(font_path, fontsize, "WARRIOR", { 255, 255, 255, 255 });
 	mage = new Text(font_path, fontsize, "MAGE", { 255, 255, 255, 255 });
 	archer = new Text(font_path, fontsize, "ARCHER", { 255, 255, 255, 255 });
-	thief = new Text(font_path, fontsize, "THIEF", { 255, 255, 255, 255 });
+	thief = new Text(font_path, fontsize, "ROGUE", { 255, 255, 255, 255 });
 
-	authors = new Text(font_path, fontsize, "WIKTOR PAWLAK I BARTOSZ SOJKA", { 255, 255, 255, 255 });
+	authors = new Text(font_path, fontsize, "BARTOSZ SOJKA I WIKTOR PAWLAK", { 255, 255, 255, 255 });
 
 	sel= new Selector("assets/selector.png", 0, 0, 10, 10);
 }

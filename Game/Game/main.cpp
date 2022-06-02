@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include "GameLoop.h"
 #include <cstdlib>
@@ -10,7 +11,7 @@
 int main(int argc, char *argv[]) {
 	GameLoop *game = nullptr;
 
-	const short int framerate = 30;
+	const short int framerate = 60;
 	const int framedelay = 1000 / framerate;
 
 	Uint32 frameStart;
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
 	const int width = 800;
 	const int height = 640;
 	bool fullscreen = false;
-	const char *title = "PuutDungeon v0.2";
+	const char *title = "PutDungeon v1.0";
 
 	game = new GameLoop();
 	

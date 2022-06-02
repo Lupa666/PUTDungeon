@@ -34,6 +34,9 @@ Player::Player(const char* texturesheet, int x, int y, int h, int w, int xStart 
 
 void Player::RegenFull()
 {
+	CurrentHealth = PlayerStats["health"];
+	CurrentStamina = PlayerStats["stamina"];
+	CurrentAmmo = PlayerStats["amunition"];
 }
 
 bool Player::Equip(Item &item)
@@ -84,9 +87,9 @@ bool Player::Equip(Item &item)
 }
 
 void Player::Update() {
-	HP->loadFont(("HP " + std::to_string(CurrentHealth) + "  " + std::to_string((int)PlayerStats["health"])).c_str(), { 255, 255, 255, 255 });
-	ST->loadFont(("ST " + std::to_string(CurrentStamina) + "  " + std::to_string((int)PlayerStats["stamina"])).c_str(), { 255, 255, 255, 255 });
-	AMMO->loadFont(("AMMO " + std::to_string(CurrentAmmo) + "  " + std::to_string((int)PlayerStats["amunition"])).c_str(), { 255, 255, 255, 255 });
+	HP->loadLabel(("HP " + std::to_string(CurrentHealth) + "  " + std::to_string((int)PlayerStats["health"])).c_str(), { 255, 255, 255, 255 });
+	ST->loadLabel(("ST " + std::to_string(CurrentStamina) + "  " + std::to_string((int)PlayerStats["stamina"])).c_str(), { 255, 255, 255, 255 });
+	AMMO->loadLabel(("AMMO " + std::to_string(CurrentAmmo) + "  " + std::to_string((int)PlayerStats["amunition"])).c_str(), { 255, 255, 255, 255 });
 	destRect.x = TileMap::getTilePosX(tileX);
 	destRect.y = TileMap::getTilePosY(tileY);
 	destRect.w = srcRect.w;
@@ -97,7 +100,7 @@ void Player::UpdateStatsText()
 {
 	int n = 0;
 	for (auto ps : PlayerStats) {
-		StatsText[n]->loadFont((ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 });
+		StatsText[n]->loadLabel((ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 });
 		n++;
 	}
 }
@@ -112,7 +115,7 @@ void Player::MakeStatsText()
 
 Player::~Player()
 {
-	delete HP, ST, AMMO;
+	delete HP, ST, AMMO, NAME, EQ;
 }
 
 void Player::MoveUp(bool tileCheck) {
@@ -142,11 +145,41 @@ void Player::SetPos(int x, int y)
 	tileY = y;
 }
 
-void Player::Render() {
-	NAME->Render(16, 420);
-	HP->Render(16, 440);
-	ST->Render(16, 460);
-	AMMO->Render(16, 480);
+void Player::RegenRound()
+{
+	CurrentStamina += PlayerStats["regenr"];
+	if (CurrentStamina > PlayerStats["stamina"]) {
+		CurrentStamina = PlayerStats["stamina"];
+	}
+}
+
+void Player::RegenFight()
+{
+	CurrentHealth += PlayerStats["health"]/10;
+	if (CurrentHealth > PlayerStats["health"]) {
+		CurrentHealth = PlayerStats["health"];
+	}
+
+	CurrentStamina += PlayerStats["regenf"];
+	if (CurrentStamina> PlayerStats["stamina"]) {
+		CurrentStamina = PlayerStats["stamina"];
+	}
+	
+}
+
+void Player::RenderMinStats(int x, int y) {
+
+	int spacing = 20;
+	NAME->Render(x, y);
+	HP->Render(x, y+(spacing*1));
+	ST->Render(x, y + (spacing * 2));
+	AMMO->Render(x, y + (spacing * 3));
+}
+
+void Player::Render(int x, int y, bool renderMinStats) {
+	if(renderMinStats){
+		RenderMinStats(x, y);
+	}
 	GameObject::Render();
 }
 
@@ -170,10 +203,6 @@ void Player::RenderStats(int xp, int yp)
 		st->Render(xp, yp + 20 + (spacing*n));
 		n++;
 	}
-}
-
-void Player::Attack()
-{
 }
 
 ///////////////////////////
@@ -247,7 +276,6 @@ Item::Item(SDL_Texture *& text, int x = 1, int y = 1):
 		else { //rainbow
 			filePath += "rainbow/";
 		}
-		std::cout << Player::playerClass << "\n";
 		switch (Player::playerClass) {
 		case 0: {
 			bool sworsh = rand() % 2;
@@ -408,6 +436,17 @@ void Item::Render()
 	}
 }
 
+void Item::UpdateText()
+{
+	name->loadLabel((itemName).c_str(), { 255, 255, 255, 255 });
+	auto statsIt = ItemStats.begin();
+	for (auto it : ItemText) {
+		std::string temp = statsIt->first + " " + std::to_string(statsIt->second);
+		it->loadLabel(temp.c_str(), { 255, 255, 255, 255 });
+		statsIt++;
+	}
+}
+
 void Item::GenerateText()
 {
 	for (auto &x : ItemStats)
@@ -434,6 +473,8 @@ void Item::RenderText(int xp, int yp)
 		n++;
 	}
 }
+
+
 
 void Item::Update()
 {

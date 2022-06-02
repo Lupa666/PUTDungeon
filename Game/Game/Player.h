@@ -23,6 +23,7 @@ public:
 	Item(int, int); //rolls for random item
 	~Item();
 	void Render();
+	void UpdateText();
 	void Update();
 	void GenerateText();
 	void RenderText(int xp, int yp);
@@ -32,7 +33,7 @@ public:
 class Player : public GameObject
 {
 public:
-	
+	std::vector<std::string> CombatActions;
 	std::map<std::string, float> PlayerStats;
 	std::map<int, Item> EquippedItems;
 	std::vector<std::shared_ptr<DynamicText>> StatsText;
@@ -40,7 +41,7 @@ public:
 	int CurrentHealth;
 	int CurrentStamina;
 	int CurrentAmmo;
-	short int ElementalType[5] = { 1, 0, 0, 0, 0 };
+	short int ElementalType[5] = { 1, 0, 0, 0, 0 }; //normal, water, wind, fire, earth
 	static int playerClass;
 
 	DynamicText *HP, *ST, *AMMO, *NAME, *EQ;
@@ -57,6 +58,8 @@ public:
 	void MoveRight(bool tileCheck = true);
 	void SetPos(int x, int y);
 
+	void RegenRound();
+	void RegenFight();
 	void RegenFull();
 	bool Equip(Item&);
 	void MakeStatsText();
@@ -68,9 +71,18 @@ public:
 	}
 	virtual void Update();
 	virtual void UpdateStatsText();
-	virtual void Render();
+	virtual void RenderMinStats(int, int);
+	virtual void Render(int x = 16, int y = 440, bool renderMinStats = true);
 	virtual void RenderInventory(int, int);
 	virtual void RenderStats(int, int);
-	virtual void Attack();
+
+	virtual void LoadCombatActions() {}
+
+	virtual void TakeDamage(int dmg) {}
+	virtual int MeleeAttack() { return 0; }
+	virtual int RangeAttack() { return 0; }
+	virtual int ElementalAttack() { return 0; }
+	virtual int CutAttack() { return 0; }
+	virtual int CrushAttack() { return 0; }
 };
 
