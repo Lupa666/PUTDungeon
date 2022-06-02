@@ -48,11 +48,10 @@ GameLoop::~GameLoop() {}
 
 void GameLoop::ResizeWindow()
 {
-	std::cout << "resize" << "\n";
 	int *h = new int(640), *w = new int(800);
 	SDL_GetWindowSize(window, w, h);
 	SDL_SetWindowSize(window, *w, *h);
-	SDL_RenderSetScale(renderer, (double)*w/windowW, (double)*h/windowH);
+	SDL_RenderSetScale(renderer, (double)*w/(double)windowW, (double)*h/ (double)windowH);
 	windowW = *w;
 	windowH = *h;
 	delete h, w;

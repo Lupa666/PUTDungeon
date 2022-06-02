@@ -13,8 +13,8 @@ DynamicText::DynamicText(const char* font_path, int font_size, const char* msg_t
 }
 
 DynamicText::~DynamicText() {
-	std::cout << "Destroying dynamic text texture Label: " << label << "\n";
-	SDL_DestroyTexture(text_texture);
+	//std::cout << "Destroying dynamic text texture Label: " << label << "\n";
+	//SDL_DestroyTexture(text_texture);
 }
 
 void DynamicText::Render(int x, int y) {
