@@ -48,7 +48,6 @@ GameLoop::~GameLoop() {}
 
 void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int height) {
 
-	
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "Game initialized\n";
@@ -67,7 +66,6 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	else {
 		isRunning = false;
 	}
-
 	background = new Background("assets/bckg.png", 0, 0,height,width);
 	startMenu = new Menu(24, "fonts/arcadeclassic.ttf", {255, 255, 255, 255}, 50, 200);
 	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
@@ -436,7 +434,7 @@ void GameLoop::generateFloor()
 	int mapTemp = rand() % 9+1;
 	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
 	currentMap->LoadMap(mapPath.c_str());
-	int size = rand() % 3+3;
+	int size = rand() % 3+4;
 
 	enemies.clear();
 	for (int i = 0; i < size; i++) {
@@ -452,7 +450,7 @@ void GameLoop::generateFloor()
 		items.push_back(Item(itemTexture, x, y));
 	}
 	player->RegenFull();
-	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
+	dungeonLevel->loadLabel(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
 	SDL_Delay(100);
 }

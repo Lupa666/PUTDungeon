@@ -18,7 +18,6 @@ private:
 	SDL_Rect srcRect, destRect;
 public:
 	Tile(const char* texturesheet, int h, int w);
-	Tile();
 	~Tile();
 
 	//void Update();

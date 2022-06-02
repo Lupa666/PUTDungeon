@@ -120,10 +120,6 @@ Tile::Tile(const char* texturesheet, int h, int w)
 	objTexture = TextureLoader::LoadText(texturesheet);
 }
 
-Tile::Tile() {
-
-}
-
 Tile::~Tile()
 {
 }

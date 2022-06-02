@@ -104,7 +104,7 @@ void CombatManager::Update()
 	}
 	int spaceEnemy = 100;
 	int spaceAction = 70;
-	SelectEnemy->setCoordinates(580, 200+(choiceEnemy*spaceEnemy));
+	SelectEnemy->setCoordinates(380, 200+(choiceEnemy*spaceEnemy));
 	SelectAction->setCoordinates(200 + (ActionN*spaceAction), 580);
 	SelectEnemy->Update();
 	SelectAction->Update();

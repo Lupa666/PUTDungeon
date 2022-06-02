@@ -87,9 +87,9 @@ bool Player::Equip(Item &item)
 }
 
 void Player::Update() {
-	HP->loadFont(("HP " + std::to_string(CurrentHealth) + "  " + std::to_string((int)PlayerStats["health"])).c_str(), { 255, 255, 255, 255 });
-	ST->loadFont(("ST " + std::to_string(CurrentStamina) + "  " + std::to_string((int)PlayerStats["stamina"])).c_str(), { 255, 255, 255, 255 });
-	AMMO->loadFont(("AMMO " + std::to_string(CurrentAmmo) + "  " + std::to_string((int)PlayerStats["amunition"])).c_str(), { 255, 255, 255, 255 });
+	HP->loadLabel(("HP " + std::to_string(CurrentHealth) + "  " + std::to_string((int)PlayerStats["health"])).c_str(), { 255, 255, 255, 255 });
+	ST->loadLabel(("ST " + std::to_string(CurrentStamina) + "  " + std::to_string((int)PlayerStats["stamina"])).c_str(), { 255, 255, 255, 255 });
+	AMMO->loadLabel(("AMMO " + std::to_string(CurrentAmmo) + "  " + std::to_string((int)PlayerStats["amunition"])).c_str(), { 255, 255, 255, 255 });
 	destRect.x = TileMap::getTilePosX(tileX);
 	destRect.y = TileMap::getTilePosY(tileY);
 	destRect.w = srcRect.w;
@@ -100,7 +100,7 @@ void Player::UpdateStatsText()
 {
 	int n = 0;
 	for (auto ps : PlayerStats) {
-		StatsText[n]->loadFont((ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 });
+		StatsText[n]->loadLabel((ps.first + " " + std::to_string((int)ps.second)).c_str(), { 255, 255, 255, 255 });
 		n++;
 	}
 }
@@ -438,11 +438,11 @@ void Item::Render()
 
 void Item::UpdateText()
 {
-	name->loadFont((itemName).c_str(), { 255, 255, 255, 255 });
+	name->loadLabel((itemName).c_str(), { 255, 255, 255, 255 });
 	auto statsIt = ItemStats.begin();
 	for (auto it : ItemText) {
 		std::string temp = statsIt->first + " " + std::to_string(statsIt->second);
-		it->loadFont(temp.c_str(), { 255, 255, 255, 255 });
+		it->loadLabel(temp.c_str(), { 255, 255, 255, 255 });
 		statsIt++;
 	}
 }

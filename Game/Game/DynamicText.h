@@ -10,7 +10,7 @@ public:
 	~DynamicText();
 	void Render(int x, int y);
 
-	void loadFont(const char* msg_text, const SDL_Color &color);
+	void loadLabel(const char* msg_text, const SDL_Color &color);
 
 	SDL_Texture* text_texture = nullptr;
 

@@ -16,7 +16,7 @@ Enemy::Enemy(const char* texture = "assets/enemy.png", int xpos = 4, int ypos = 
 	srcRect.x = 0;
 	srcRect.y = 0;
 	LoadStats();
-	NAME.loadFont(enemyName.c_str(), { 255, 255, 255, 255 });
+	NAME.loadLabel(enemyName.c_str(), { 255, 255, 255, 255 });
 	UpdateText();
 }
 
@@ -29,7 +29,7 @@ Enemy::Enemy(SDL_Texture *& text, int xpos = 4, int ypos = 4) :
 	tileX = xpos;
 	tileY = ypos;
 	LoadStats();
-	NAME.loadFont(enemyName.c_str(), { 255, 255, 255, 255 });
+	NAME.loadLabel(enemyName.c_str(), { 255, 255, 255, 255 });
 	UpdateText();
 }
 
@@ -104,9 +104,9 @@ void Enemy::Update()
 
 void Enemy::UpdateText()
 {
-	NAME.loadFont(enemyName.c_str(), { 255, 255, 255, 255 });
-	HP.loadFont(("HP " + std::to_string((int)currentHP) + " " + std::to_string((int)EnemyStats["health"])).c_str(), { 255, 255, 255, 255 });
-	STAMINA.loadFont(("ST " + std::to_string((int)currentStamina) + " " + std::to_string((int)EnemyStats["stamina"])).c_str(), { 255, 255, 255, 255 });
+	NAME.loadLabel(enemyName.c_str(), { 255, 255, 255, 255 });
+	HP.loadLabel(("HP " + std::to_string((int)currentHP) + " " + std::to_string((int)EnemyStats["health"])).c_str(), { 255, 255, 255, 255 });
+	STAMINA.loadLabel(("ST " + std::to_string((int)currentStamina) + " " + std::to_string((int)EnemyStats["stamina"])).c_str(), { 255, 255, 255, 255 });
 }
 
 void Enemy::Render()
