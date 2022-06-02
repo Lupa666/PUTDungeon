@@ -330,6 +330,12 @@ void GameLoop::update()
 				) {
 				combat->LoadEnemy(enemies[i]);
 				gameState = GameState::combat;
+				int itemRoll = rand() % 3;
+				if (itemRoll >= 1) {
+					int x, y;
+					items.push_back(Item(itemTexture, enemies[i].tileX, enemies[i].tileY));
+					(items.end() - 1)->onGround = true;
+				}
 				enemies.erase(enemies.begin()+i);
 			}
 		}
@@ -423,16 +429,16 @@ void GameLoop::render() {
 
 void GameLoop::generateFloor()
 {
+	SDL_Delay(100);
 	floorLevel++;
 	delete currentMap;
 	currentMap = new TileMap(12, 32);
 	int mapTemp = rand() % 9+1;
 	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
 	currentMap->LoadMap(mapPath.c_str());
-	int size = rand() % 3 + 5;
+	int size = rand() % 3+3;
 
 	enemies.clear();
-
 	for (int i = 0; i < size; i++) {
 		int x, y;
 		currentMap->GetNewEnemyPos(x, y);
@@ -440,8 +446,7 @@ void GameLoop::generateFloor()
 	}
 
 	items.clear();
-
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 4; i++) {
 		int x, y;
 		currentMap->GetNewEnemyPos(x, y);
 		items.push_back(Item(itemTexture, x, y));
@@ -449,6 +454,7 @@ void GameLoop::generateFloor()
 	player->RegenFull();
 	dungeonLevel->loadFont(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
+	SDL_Delay(100);
 }
 
 void GameLoop::clean() {//cleans after closing the game

@@ -2,6 +2,7 @@
 #include "GameLoop.h"
 #include "TileMap.h"
 #include "TextureLoader.h"
+#include <math.h>
 
 
 Enemy::Enemy(const char* texture = "assets/enemy.png", int xpos = 4, int ypos = 4):
@@ -75,7 +76,7 @@ void Enemy::LoadStats()
 			float value;
 			fileStats >> value;
 			if (key == "health" or key == "dmg") {
-				value *= (1 + 1.6*(GameLoop::floorLevel-1));
+				value *= pow(1.6,(GameLoop::floorLevel-1));
 			}
 			EnemyStats.try_emplace(key, value);
 		}
