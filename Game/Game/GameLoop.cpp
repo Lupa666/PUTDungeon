@@ -71,6 +71,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	dungeonLevel = new DynamicText("fonts/arcadeclassic.ttf", 24, ("current floor "+std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	enemyTexture = TextureLoader::LoadText("assets/enemy.png");
 	itemTexture = TextureLoader::LoadText("assets/item.png");
+	currentMap = new TileMap();
 }
 
 void GameLoop::handleEvents() {
@@ -428,8 +429,6 @@ void GameLoop::render() {
 void GameLoop::generateFloor()
 {
 	floorLevel++;
-	delete currentMap;
-	currentMap = new TileMap(12, 32);
 	int mapTemp = rand() % 9+1;
 	std::string mapPath = "maps/map" + std::to_string(mapTemp) + ".txt";
 	currentMap->LoadMap(mapPath.c_str());

@@ -115,7 +115,7 @@ void Player::MakeStatsText()
 
 Player::~Player()
 {
-	delete HP, ST, AMMO;
+	delete HP, ST, AMMO, NAME, EQ;
 }
 
 void Player::MoveUp(bool tileCheck) {
