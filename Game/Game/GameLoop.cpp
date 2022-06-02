@@ -427,7 +427,6 @@ void GameLoop::render() {
 
 void GameLoop::generateFloor()
 {
-	SDL_Delay(100);
 	floorLevel++;
 	delete currentMap;
 	currentMap = new TileMap(12, 32);
@@ -452,7 +451,6 @@ void GameLoop::generateFloor()
 	player->RegenFull();
 	dungeonLevel->loadLabel(("current floor " + std::to_string(floorLevel)).c_str(), { 255, 255, 255, 255 });
 	gameState = GameState::play;
-	SDL_Delay(100);
 }
 
 void GameLoop::clean() {//cleans after closing the game

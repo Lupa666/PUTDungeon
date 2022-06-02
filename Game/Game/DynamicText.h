@@ -15,7 +15,7 @@ public:
 	SDL_Texture* text_texture = nullptr;
 
 private:
-
+	std::string label;
 	TTF_Font * font;
 	std::string font_p;
 	int font_s;

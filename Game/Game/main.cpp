@@ -10,7 +10,7 @@
 int main(int argc, char *argv[]) {
 	GameLoop *game = nullptr;
 
-	const short int framerate = 24;
+	const short int framerate = 12;
 	const int framedelay = 1000 / framerate;
 
 	Uint32 frameStart;

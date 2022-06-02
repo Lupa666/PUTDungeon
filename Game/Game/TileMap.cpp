@@ -3,6 +3,7 @@
 
 TileMap::TileMap(int x, int y)
 {
+	std::cout << "CREATING TILE MAP" << "\n";
 	tiles[0] = new Tile("assets/wall.png", 32, 32);
 	tiles[1] = new Tile("assets/ground.png", 32, 32);
 	tiles[2] = new Tile("assets/selector.png", 32, 32);
@@ -13,6 +14,7 @@ TileMap::TileMap(int x, int y)
 
 TileMap::~TileMap()
 {
+	std::cout << "DELETING TILE MAP" << "\n";
 	delete tiles[0], tiles[1], tiles[2];
 }
 
