@@ -46,17 +46,30 @@ GameLoop::GameLoop() {}
 
 GameLoop::~GameLoop() {}
 
+void GameLoop::ResizeWindow()
+{
+	std::cout << "resize" << "\n";
+	int *h = new int(640), *w = new int(800);
+	SDL_GetWindowSize(window, w, h);
+	SDL_SetWindowSize(window, *w, *h);
+	SDL_RenderSetScale(renderer, (double)*w/windowW, (double)*h/windowH);
+	windowW = *w;
+	windowH = *h;
+	delete h, w;
+}
+
 void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int height) {
 
-
+	windowW = width;
+	windowH = height;
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "Game initialized\n";
 
-		window = SDL_CreateWindow(title, xpos, ypos, width, height, 0);
+		window = SDL_CreateWindow(title, xpos, ypos, width, height, SDL_WINDOW_RESIZABLE);
 		if (window) {
 			std::cout << "Window created\n";
 		}
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (renderer) {
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 			std::cout << "Renderer created!\n";
@@ -82,6 +95,13 @@ void GameLoop::handleEvents() {
 
 	case GameState::menu: {
 		switch (event.type) {
+		case SDL_WINDOWEVENT:{
+			switch (event.window.event) {
+			case SDL_WINDOWEVENT_RESIZED: {
+				ResizeWindow();
+			}
+			}
+		}
 		case SDL_KEYDOWN: {
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {

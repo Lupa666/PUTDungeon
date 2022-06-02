@@ -13,7 +13,9 @@ private:
 	
 	bool isRunning = false;
 	SDL_Window *window = NULL;
-	
+	int windowW;
+	int windowH;
+
 public:
 	GameLoop();
 	~GameLoop();
@@ -23,6 +25,7 @@ public:
 	static SDL_Renderer *renderer;
 	static SDL_Event event;
 
+	void ResizeWindow();
 	void gameInit(const char*, int, int, int, int); //initializes game
 	void handleEvents(); //handles events
 	void update(); //updates game objects
