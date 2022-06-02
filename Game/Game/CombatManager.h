@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Selector.h"
+#include "SoundPlayer.h"
 
 class CombatManager
 {
@@ -34,7 +35,7 @@ public:
 	void Render(int x = 0, int y = 0);
 
 	void HurtPlayer();
-	void PressEnter();
+	void PressEnter(SoundPlayer *);
 	void CheckClearEnemies();
 	void EnemyAction();
 };

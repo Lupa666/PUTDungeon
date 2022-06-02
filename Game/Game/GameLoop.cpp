@@ -32,6 +32,7 @@ DynamicText* dungeonLevel;
 SDL_Texture * enemyTexture;
 SDL_Texture * itemTexture;
 CombatManager * combat;
+SoundPlayer * audio;
 
 std::vector<Item> items;
 std::vector<Enemy> enemies;
@@ -84,6 +85,7 @@ void GameLoop::gameInit(const char* title, int xpos, int ypos, int width, int he
 	enemyTexture = TextureLoader::LoadText("assets/enemy.png");
 	itemTexture = TextureLoader::LoadText("assets/item.png");
 	currentMap = new TileMap();
+	audio = new SoundPlayer();
 }
 
 void GameLoop::handleEvents() {
@@ -176,18 +178,22 @@ void GameLoop::handleEvents() {
 			switch (GameLoop::event.key.keysym.sym) {
 			case SDLK_DOWN: {
 				player->MoveDown(currentMap->checkWallCollision(player->tileX, player->tileY + 1));
+				audio->PlayWalk();
 				break;
 			}
 			case SDLK_UP: {
 				player->MoveUp(currentMap->checkWallCollision(player->tileX, player->tileY - 1));
+				audio->PlayWalk();
 				break;
 			}
 			case SDLK_LEFT: {
 				player->MoveLeft(currentMap->checkWallCollision(player->tileX - 1, player->tileY));
+				audio->PlayWalk();
 				break;
 			}
 			case SDLK_RIGHT: {
 				player->MoveRight(currentMap->checkWallCollision(player->tileX + 1, player->tileY));
+				audio->PlayWalk();
 				break;
 			}
 			case SDLK_i: {
@@ -246,7 +252,7 @@ void GameLoop::handleEvents() {
 				break;
 			}
 			case SDLK_RETURN: {
-				combat->PressEnter();
+				combat->PressEnter(audio);
 				break;
 			}
 			}
@@ -472,7 +478,7 @@ void GameLoop::generateFloor()
 }
 
 void GameLoop::clean() {//cleans after closing the game
-	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel, combat;
+	delete player, background, startMenu, currentMap, inventory, overScreen, dungeonLevel, combat, audio;
 	SDL_DestroyTexture(enemyTexture);
 	enemyTexture = nullptr;
 	SDL_DestroyTexture(itemTexture);

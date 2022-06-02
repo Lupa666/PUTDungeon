@@ -143,8 +143,9 @@ void CombatManager::HurtPlayer()
 	toManagePlayer->CurrentHealth -= 20;
 }
 
-void CombatManager::PressEnter()
+void CombatManager::PressEnter(SoundPlayer * audio)
 {
+	enemyTurn = false;
 	int ToDealDamage = 0;
 	int Element = 0;
 	switch (choiceAction) {
@@ -198,6 +199,12 @@ void CombatManager::PressEnter()
 		toFightEnemies[choiceEnemy].TakeDamage(ToDealDamage,Element);
 		CheckClearEnemies();
 		enemyTurn = true;
+		if (ToDealDamage >= 140) {
+			audio->PlayHitHard();
+		}
+		else {
+			audio->PlayHitNormal();
+		}
 	}
 	else {
 		std::cout << "Couldn't take action!" << "\n";
