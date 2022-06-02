@@ -96,7 +96,7 @@
       <AdditionalIncludeDirectories>C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\include;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\include;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\include;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\\SDL2_ttf-2.0.12\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\include;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\lib\x64;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\lib\x64;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\wiciu\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;C:\Users\bartk\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -124,12 +124,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\include;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_ttf-2.0.12\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_mixer-2.0.4\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2_image-2.0.1\lib\x64;C:\Users\SojkaBartosz\source\repos\Lupa666\PUTDungeon\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

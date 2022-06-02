@@ -41,7 +41,7 @@ void CombatManager::SelectLeft()
 
 	choiceAction--;
 	if (choiceAction < 4 and choiceAction >= actionsNumber) {
-		choiceAction = choiceAction - actionsNumber;
+		choiceAction = choiceAction - 4 + actionsNumber;
 	}
 	if (choiceAction < 0) {
 		choiceAction = 7;
@@ -52,7 +52,7 @@ void CombatManager::SelectRight()
 {
 	choiceAction++;
 	if (choiceAction < 4 and choiceAction >= actionsNumber) {
-		choiceAction = choiceAction + actionsNumber;
+		choiceAction = choiceAction + 4 - actionsNumber;
 	}
 	if (choiceAction >= 8) {
 		choiceAction = 0;
